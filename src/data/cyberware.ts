@@ -17,14 +17,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       description: 'Additional storage for quickhacks',
       rarity: 'Uncommon',
       stats: ['+1 Quickhack Slot', '+10% Upload Speed']
-    },
-    {
-      id: 'tabula-e-rasa',
-      name: 'Tabula E-Rasa',
-      category: 'Frontal Cortex',
-      description: 'Resets attribute points on demand',
-      rarity: 'Legendary',
-      stats: ['Respec Attributes', '+25% Memory']
     }
   ],
   'Ocular System': [
