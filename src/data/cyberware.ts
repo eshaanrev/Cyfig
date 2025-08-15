@@ -27,14 +27,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       description: 'Advanced optical enhancement system',
       rarity: 'Epic',
       stats: ['+15% Headshot Damage', 'Zoom Enhancement', 'Threat Detection']
-    },
-    {
-      id: 'zetatech-optics',
-      name: 'Zetatech Sandevistan Mk.1',
-      category: 'Ocular System',
-      description: 'Time dilation visual processor',
-      rarity: 'Rare',
-      stats: ['+20% Crit Chance', 'Slow-Mo Vision', '+10% Movement Speed']
     }
   ],
   'Circulatory System': [
