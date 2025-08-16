@@ -73,14 +73,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       description: 'Slows time when dodging or sliding',
       rarity: 'Rare',
       stats: ['Time Dilation on Slide/Dodge', '+15% Movement Speed']
-    },
-    {
-      id: 'sandevistan',
-      name: 'Sandevistan Mk.4',
-      category: 'Nervous System',
-      description: 'Advanced time dilation system',
-      rarity: 'Legendary',
-      stats: ['70% Time Dilation', '16 Second Duration', '+25% Crit Damage']
     }
   ],
   'Integumentary System': [
