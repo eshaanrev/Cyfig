@@ -137,14 +137,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       description: 'Enhanced leg strength and jumping ability',
       rarity: 'Epic',
       stats: ['+50% Jump Height', '+25% Movement Speed', 'Double Jump']
-    },
-    {
-      id: 'lynx-paws',
-      name: 'Lynx Paws',
-      category: 'Legs',
-      description: 'Silent movement enhancement',
-      rarity: 'Rare',
-      stats: ['Silent Movement', '+30% Crouch Speed', 'No Fall Damage']
     }
   ],
   'Operating System': [
