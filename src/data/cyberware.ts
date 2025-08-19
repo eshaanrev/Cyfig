@@ -49,14 +49,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
   ],
   'Immune System': [
     {
-      id: 'detoxifier',
-      name: 'Detoxifier',
-      category: 'Immune System',
-      description: 'Reduces poison and chemical damage',
-      rarity: 'Common',
-      stats: ['+50% Poison Resistance', '+25% Chemical Resistance']
-    },
-    {
       id: 'pain-editor',
       name: 'Pain Editor',
       category: 'Immune System',
