@@ -47,16 +47,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       stats: ['-30% Cyberware Cooldown', '+15% Max Health']
     }
   ],
-  'Immune System': [
-    {
-      id: 'pain-editor',
-      name: 'Pain Editor',
-      category: 'Immune System',
-      description: 'Blocks pain signals, increases damage threshold',
-      rarity: 'Legendary',
-      stats: ['+50% Damage Resistance', 'Immunity to Stagger', '+100% Pain Tolerance']
-    }
-  ],
   'Nervous System': [
     {
       id: 'kerenzikov',
