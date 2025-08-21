@@ -22,7 +22,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
   'Ocular System': [
     {
       id: 'kiroshi-optics',
-      name: 'Kiroshi Optics Mk.3',
+      name: 'Kiroshi "The Oracle" Optics',
       category: 'Ocular System',
       description: 'Advanced optical enhancement system',
       rarity: 'Epic',
