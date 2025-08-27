@@ -73,6 +73,14 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       description: 'Active camouflage system',
       rarity: 'Epic',
       stats: ['15 Second Invisibility', '+30% Stealth Damage']
+    },
+    {
+      id: 'cogito-lattice',
+      name: 'Cogito Lattice',
+      category: 'Integumentary System',
+      description: 'Armor with boosted regen at low RAM',
+      rarity: 'Legendary',
+      stats: ['60 Armor', '+250% Armor when under 12 RAM']
     }
   ],
   'Arms': [
