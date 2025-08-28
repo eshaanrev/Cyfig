@@ -48,24 +48,26 @@ function App() {
   const installedCount = slots.filter(slot => slot.installedCyberware).length;
   const totalSlots = slots.length;
   
-  // Calculate armor and cyberware capacity
-  const totalArmor = slots.reduce((acc, slot) => {
+  // Calculate cyberware capacity usage (more accurate system)
+  const maxCapacity = 286; // Base capacity in CP2077
+  const usedCapacity = slots.reduce((acc, slot) => {
     if (slot.installedCyberware) {
-      const armorBonus = slot.installedCyberware.stats.find(stat => stat.includes('Armor'))?.match(/\d+/)?.[0];
-      return acc + (armorBonus ? parseInt(armorBonus) : 0);
+      return acc + slot.installedCyberware.capacity;
     }
     return acc;
   }, 0);
-  
-  const cyberwareCapacity = 100; // Max capacity
-  const usedCapacity = slots.reduce((acc, slot) => {
+
+  // Calculate armor from cyberware
+  const totalArmor = slots.reduce((acc, slot) => {
     if (slot.installedCyberware) {
-      // Different rarities use different capacity
-      const capacityUsed = slot.installedCyberware.rarity === 'Legendary' ? 20 :
-                          slot.installedCyberware.rarity === 'Epic' ? 15 :
-                          slot.installedCyberware.rarity === 'Rare' ? 10 :
-                          slot.installedCyberware.rarity === 'Uncommon' ? 7 : 5;
-      return acc + capacityUsed;
+      // Look for armor values in stats
+      const armorMatch = slot.installedCyberware.stats.find(stat => 
+        stat.includes('Armor') && /\d+/.test(stat)
+      );
+      if (armorMatch) {
+        const armorValue = parseInt(armorMatch.match(/\d+/)?.[0] || '0');
+        return acc + armorValue;
+      }
     }
     return acc;
   }, 0);
@@ -105,7 +107,7 @@ function App() {
             <User className="w-8 h-8 text-red-400" />
             <div>
               <h1 className="text-3xl font-mono text-red-400 tracking-wider">CYFIG</h1>
-              <p className="text-sm text-blue-400 font-mono">CYBERWARE CONFIGURATOR</p>
+              <p className="text-sm text-blue-400 font-mono">CYBERWARE CONFIGURATOR v2077</p>
             </div>
           </div>
           
@@ -113,7 +115,7 @@ function App() {
             <div className="flex items-center space-x-2">
               <Cpu className="w-5 h-5 text-blue-400" />
               <span className="text-white font-mono">
-                {installedCount}/{totalSlots} SLOTS
+                {installedCount}/{totalSlots} INSTALLED
               </span>
             </div>
           </div>
@@ -122,7 +124,7 @@ function App() {
 
       {/* Side panels */}
       <div className="absolute left-6 top-1/2 transform -translate-y-1/2 space-y-6 z-10">
-        {/* Armor meter */}
+        {/* Armor display */}
         <div className="bg-gray-900/90 backdrop-blur-sm border border-blue-400/40 rounded-lg p-4 w-48">
           <div className="flex items-center space-x-2 mb-3">
             <Shield className="w-5 h-5 text-blue-400" />
@@ -136,10 +138,10 @@ function App() {
             <div className="w-full bg-gray-700 rounded-full h-2">
               <div 
                 className="bg-gradient-to-r from-blue-600 to-blue-400 h-2 rounded-full transition-all duration-500"
-                style={{ width: `${Math.min((totalArmor / 500) * 100, 100)}%` }}
+                style={{ width: `${Math.min((totalArmor / 1000) * 100, 100)}%` }}
               ></div>
             </div>
-            <div className="text-xs text-gray-400 font-mono">Max: 500</div>
+            <div className="text-xs text-gray-400 font-mono">From Cyberware</div>
           </div>
         </div>
 
@@ -152,17 +154,49 @@ function App() {
           <div className="space-y-2">
             <div className="flex justify-between text-xs font-mono">
               <span className="text-gray-400">Used</span>
-              <span className="text-white">{usedCapacity}/{cyberwareCapacity}</span>
+              <span className="text-white">{usedCapacity}/{maxCapacity}</span>
             </div>
             <div className="w-full bg-gray-700 rounded-full h-2">
               <div 
                 className={`h-2 rounded-full transition-all duration-500 ${
-                  usedCapacity > cyberwareCapacity * 0.8 
-                    ? 'bg-gradient-to-r from-red-600 to-red-400'
-                    : 'bg-gradient-to-r from-red-500 to-red-400'
+                  usedCapacity > maxCapacity 
+                    ? 'bg-gradient-to-r from-red-600 to-red-500'
+                    : usedCapacity > maxCapacity * 0.8 
+                    ? 'bg-gradient-to-r from-yellow-600 to-yellow-400'
+                    : 'bg-gradient-to-r from-green-600 to-green-400'
                 }`}
-                style={{ width: `${Math.min((usedCapacity / cyberwareCapacity) * 100, 100)}%` }}
+                style={{ width: `${Math.min((usedCapacity / maxCapacity) * 100, 100)}%` }}
               ></div>
+            </div>
+            {usedCapacity > maxCapacity && (
+              <div className="text-xs text-red-400 font-mono">OVERCAPACITY!</div>
+            )}
+          </div>
+        </div>
+
+        {/* Rarity legend */}
+        <div className="bg-gray-900/90 backdrop-blur-sm border border-gray-400/40 rounded-lg p-4 w-48">
+          <div className="text-gray-400 font-mono text-sm mb-2">RARITY LEVELS</div>
+          <div className="space-y-1 text-xs">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+              <span className="text-green-400">Common</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <span className="text-blue-400">Uncommon</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+              <span className="text-purple-400">Rare</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+              <span className="text-yellow-400">Epic</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+              <span className="text-orange-400">Legendary</span>
             </div>
           </div>
         </div>
@@ -206,6 +240,9 @@ function App() {
         <div className="flex justify-between items-center text-sm font-mono">
           <span className="text-red-400">
             {selectedSlot ? `Configuring: ${selectedSlotData?.name}` : 'Select a slot to install cyberware'}
+          </span>
+          <span className="text-blue-400">
+            Cyberpunk 2077 Accurate Data
           </span>
         </div>
       </div>
