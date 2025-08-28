@@ -21,11 +21,11 @@ export const cyberwareSlots: CyberwareSlot[] = [
     position: { top: '12%', left: '56%' }
   },
   
-  // Ocular System - 2 slots (eyes area)
+  // Face - 1 slot (2nd unlocked via quest), positioned at eye level
   {
-    id: 'ocular-system',
-    name: 'Ocular System',
-    category: 'Ocular System',
+    id: 'face-1',
+    name: 'Face',
+    category: 'Face',
     position: { top: '20%', left: '50%' }
   },
   
@@ -37,7 +37,7 @@ export const cyberwareSlots: CyberwareSlot[] = [
     position: { top: '28%', left: '50%' }
   },
   
-  // Arms - 2 slots (shoulder area)
+  // Arms - 1 slot (shoulder area)
   {
     id: 'arms',
     name: 'Arms',
@@ -45,18 +45,12 @@ export const cyberwareSlots: CyberwareSlot[] = [
     position: { top: '36%', left: '50%' }
   },
   
-  // Hands - 2 slots (hand area)
+  // Hands - 1 slot (2nd unlocked via perk)
   {
     id: 'hands-1',
-    name: 'Hands 1',
+    name: 'Hands',
     category: 'Hands',
-    position: { top: '44%', left: '47%' }
-  },
-  {
-    id: 'hands-2',
-    name: 'Hands 2',
-    category: 'Hands',
-    position: { top: '44%', left: '53%' }
+    position: { top: '44%', left: '50%' }
   },
   
   // Circulatory System - 3 slots (chest area)
@@ -119,27 +113,21 @@ export const cyberwareSlots: CyberwareSlot[] = [
     position: { top: '68%', left: '56%' }
   },
   
-  // Skeleton - 3 slots (core body area)
+  // Skeleton - 2 slots (3rd unlocked via perk)
   {
     id: 'skeleton-1',
     name: 'Skeleton 1',
     category: 'Skeleton',
-    position: { top: '76%', left: '44%' }
+    position: { top: '76%', left: '47%' }
   },
   {
     id: 'skeleton-2',
     name: 'Skeleton 2',
     category: 'Skeleton',
-    position: { top: '76%', left: '50%' }
-  },
-  {
-    id: 'skeleton-3',
-    name: 'Skeleton 3',
-    category: 'Skeleton',
-    position: { top: '76%', left: '56%' }
+    position: { top: '76%', left: '53%' }
   },
   
-  // Legs - 2 slots (legs area)
+  // Legs - 1 slot (legs area)
   {
     id: 'legs',
     name: 'Legs',
