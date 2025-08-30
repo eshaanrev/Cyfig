@@ -3,8 +3,8 @@ import { Cyberware } from '../types/cyberware';
 export const cyberwareData: Record<string, Cyberware[]> = {
   'Frontal Cortex': [
     {
-      id: 'arasaka-algos',
-      name: 'Arasaka Algos',
+      id: 'axolotl',
+      name: 'Axolotl',
       category: 'Frontal Cortex',
       description: 'Reduces cooldown for all cyberware after neutralizing an enemy',
       rarity: 'Legendary',
