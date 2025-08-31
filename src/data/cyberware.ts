@@ -217,15 +217,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       capacity: 8
     },
     {
-      id: 'maxtac-mantis-blades',
-      name: 'MaxTac Mantis Blades',
-      category: 'Arms',
-      description: 'Military-grade mantis blades',
-      rarity: 'Legendary',
-      stats: ['Enhanced blade damage', 'Military precision', 'Leap attack'],
-      capacity: 8
-    },
-    {
       id: 'monowire',
       name: 'Monowire',
       category: 'Arms',
