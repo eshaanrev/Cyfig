@@ -99,7 +99,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       id: 'arasaka-mk4',
       name: 'Arasaka Mk.4',
       category: 'Operating System',
-      description: 'Advanced netrunning cyberdeck with stealth capabilities',
+      description: 'Advanced netrunning cyberdeck with maximum stealth capabilities',
       rarity: 'Epic',
       stats: ['6-16 RAM', '5-8 Slots', '-2 RAM cost Covert quickhacks', '+5 RAM after takedown'],
       capacity: 14
