@@ -302,15 +302,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
   ],
   'Skeleton': [
     {
-      id: 'bone-lacing',
-      name: 'Bone Lacing',
-      category: 'Skeleton',
-      description: 'Basic armor reinforcement',
-      rarity: 'Common',
-      stats: ['+17-49 Armor', 'Simple but effective'],
-      capacity: 8
-    },
-    {
       id: 'dense-marrow',
       name: 'Dense Marrow',
       category: 'Skeleton',
