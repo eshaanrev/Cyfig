@@ -199,39 +199,12 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       capacity: 8
     },
     {
-      id: 'mantis-blades-thermal',
-      name: 'Thermal Mantis Blades',
-      category: 'Arms',
-      description: 'Heat-enhanced mantis blades',
-      rarity: 'Rare',
-      stats: ['Thermal damage', 'Burn chance', 'Leap attack'],
-      capacity: 8
-    },
-    {
-      id: 'mantis-blades-electric',
-      name: 'Electrifying Mantis Blades',
-      category: 'Arms',
-      description: 'Electrically enhanced mantis blades',
-      rarity: 'Rare',
-      stats: ['Electrical damage', '10-20% Shock chance', 'Leap attack'],
-      capacity: 8
-    },
-    {
       id: 'monowire',
       name: 'Monowire',
       category: 'Arms',
       description: 'Monofilament whip weapon with quickhack slot',
       rarity: 'Uncommon',
       stats: ['Physical damage', 'Empty quickhack slot', 'Whip attacks'],
-      capacity: 8
-    },
-    {
-      id: 'monowire-thermal',
-      name: 'Thermal Monowire',
-      category: 'Arms',
-      description: 'Heat-enhanced monowire',
-      rarity: 'Rare',
-      stats: ['Thermal damage', 'Empty quickhack slot'],
       capacity: 8
     },
     {
