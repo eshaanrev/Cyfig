@@ -16,10 +16,6 @@ export const CyberwareSlot: React.FC<CyberwareSlotProps> = ({
 }) => {
   const getRarityColor = (rarity?: string) => {
     switch (rarity) {
-      case 'Common': return 'border-green-400';
-      case 'Uncommon': return 'border-blue-400';
-      case 'Rare': return 'border-purple-400';
-      case 'Epic': return 'border-yellow-400';
       case 'Legendary': return 'border-orange-400';
       default: return 'border-gray-500';
     }
@@ -56,11 +52,7 @@ export const CyberwareSlot: React.FC<CyberwareSlotProps> = ({
                 {slot.installedCyberware.name}
               </div>
               <div className={`text-xs mt-1 ${
-                slot.installedCyberware.rarity === 'Common' ? 'text-green-400' :
-                slot.installedCyberware.rarity === 'Uncommon' ? 'text-blue-400' :
-                slot.installedCyberware.rarity === 'Rare' ? 'text-purple-400' :
-                slot.installedCyberware.rarity === 'Epic' ? 'text-yellow-400' :
-                'text-orange-400'
+                slot.installedCyberware.rarity === 'Legendary' ? 'text-orange-400' : 'text-gray-400'
               }`}>
                 {slot.installedCyberware.rarity}
               </div>

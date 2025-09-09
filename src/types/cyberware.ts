@@ -4,7 +4,9 @@ export interface Cyberware {
   category: string;
   description: string;
   rarity: 'Common' | 'Uncommon' | 'Rare' | 'Epic' | 'Legendary';
+  rarity: 'Legendary';
   stats: string[];
+  capacity: number;
 }
 
 export interface CyberwareSlot {

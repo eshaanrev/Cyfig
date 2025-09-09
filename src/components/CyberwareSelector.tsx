@@ -16,10 +16,6 @@ export const CyberwareSelector: React.FC<CyberwareSelectorProps> = ({
 }) => {
   const getRarityColor = (rarity: string) => {
     switch (rarity) {
-      case 'Common': return 'border-green-400 text-green-400 bg-green-400/10';
-      case 'Uncommon': return 'border-blue-400 text-blue-400 bg-blue-400/10';
-      case 'Rare': return 'border-purple-400 text-purple-400 bg-purple-400/10';
-      case 'Epic': return 'border-yellow-400 text-yellow-400 bg-yellow-400/10';
       case 'Legendary': return 'border-orange-400 text-orange-400 bg-orange-400/10';
       default: return 'border-gray-400 text-gray-400 bg-gray-400/10';
     }

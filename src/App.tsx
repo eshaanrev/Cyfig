@@ -179,24 +179,11 @@ function App() {
           <div className="text-gray-400 font-mono text-sm mb-2">RARITY LEVELS</div>
           <div className="space-y-1 text-xs">
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-              <span className="text-green-400">Common</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-              <span className="text-blue-400">Uncommon</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-              <span className="text-purple-400">Rare</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-              <span className="text-yellow-400">Epic</span>
-            </div>
-            <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
               <span className="text-orange-400">Legendary</span>
+            </div>
+            <div className="text-xs text-gray-500 mt-2">
+              All cyberware shown at maximum tier for late-game builds
             </div>
           </div>
         </div>
