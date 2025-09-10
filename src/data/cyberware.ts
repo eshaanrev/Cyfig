@@ -94,7 +94,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     }
   ],
   'Operating System': [
-    // Cyberdecks
     {
       id: 'arasaka-mk4',
       name: 'Arasaka Mk.4',
@@ -131,7 +130,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       stats: ['13 RAM', '8 Slots', '-20% trace through cameras', '+30% device quickhack damage'],
       capacity: 25
     },
-    // Sandevistan
     {
       id: 'militech-falcon',
       name: 'Militech "Falcon" Sandevistan',
@@ -168,7 +166,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       stats: ['90% time slow', '+15% Crit Chance', '+10% Crit Damage', '8 sec duration'],
       capacity: 35
     },
-    // Berserk
     {
       id: 'militech-berserk',
       name: 'Militech Berserk',
