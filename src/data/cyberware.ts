@@ -299,15 +299,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       capacity: 40
     },
     {
-      id: 'titanium-bones',
-      name: 'Titanium Bones',
-      category: 'Skeleton',
-      description: 'Lightweight but strong bone replacement',
-      rarity: 'Rare',
-      stats: ['+62% Carrying Capacity'],
-      capacity: 5
-    },
-    {
       id: 'kinetic-frame',
       name: 'Kinetic Frame',
       category: 'Skeleton',
