@@ -126,6 +126,12 @@ export const cyberwareSlots: CyberwareSlot[] = [
     category: 'Skeleton',
     position: { top: '76%', left: '53%' }
   },
+  {
+    id: 'skeleton-3',
+    name: 'Skeleton 3',
+    category: 'Skeleton',
+    position: { top: '76%', left: '50%' }
+  },
   
   // Legs - 1 slot (legs area)
   {
