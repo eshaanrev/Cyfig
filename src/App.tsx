@@ -10,6 +10,7 @@ import { Cpu, Zap, Shield, User, Activity, Gauge } from 'lucide-react';
 function App() {
   const [slots, setSlots] = useState<SlotType[]>(cyberwareSlots);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+  const [edgerunnerPerk, setEdgerunnerPerk] = useState<boolean>(false);
 
   const handleSlotClick = (slotId: string) => {
     setSelectedSlot(slotId);
@@ -49,7 +50,8 @@ function App() {
   const totalSlots = slots.length;
   
   // Calculate cyberware capacity usage (more accurate system)
-  const maxCapacity = 286; // Base capacity in CP2077
+  const baseCapacity = 286; // Base capacity in CP2077
+  const maxCapacity = baseCapacity + (edgerunnerPerk ? 50 : 0); // +50 with Edgerunner perk
   const usedCapacity = slots.reduce((acc, slot) => {
     if (slot.installedCyberware) {
       return acc + slot.installedCyberware.capacity;
@@ -118,6 +120,25 @@ function App() {
                 {installedCount}/{totalSlots} INSTALLED
               </span>
             </div>
+            
+            {/* Edgerunner perk toggle */}
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => setEdgerunnerPerk(!edgerunnerPerk)}
+                className={`
+                  px-3 py-1 rounded border font-mono text-sm transition-all duration-200
+                  ${edgerunnerPerk 
+                    ? 'bg-orange-600/20 border-orange-400 text-orange-400 shadow-md shadow-orange-400/20' 
+                    : 'bg-gray-800/50 border-gray-600 text-gray-400 hover:border-orange-400 hover:text-orange-400'
+                  }
+                `}
+              >
+                EDGERUNNER {edgerunnerPerk ? 'ON' : 'OFF'}
+              </button>
+              <div className="text-xs text-gray-400 font-mono">
+                +50 CAP
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -154,7 +175,10 @@ function App() {
           <div className="space-y-2">
             <div className="flex justify-between text-xs font-mono">
               <span className="text-gray-400">Used</span>
-              <span className="text-white">{usedCapacity}/{maxCapacity}</span>
+              <span className="text-white">
+                {usedCapacity}/{maxCapacity}
+                {edgerunnerPerk && <span className="text-orange-400 ml-1">(+50)</span>}
+              </span>
             </div>
             <div className="w-full bg-gray-700 rounded-full h-2">
               <div 
@@ -171,6 +195,9 @@ function App() {
             {usedCapacity > maxCapacity && (
               <div className="text-xs text-red-400 font-mono">OVERCAPACITY!</div>
             )}
+            {edgerunnerPerk && (
+              <div className="text-xs text-orange-400 font-mono">EDGERUNNER ACTIVE</div>
+            )}
           </div>
         </div>
 
@@ -179,31 +206,15 @@ function App() {
           <div className="text-gray-400 font-mono text-sm mb-2">RARITY LEVELS</div>
           <div className="space-y-1 text-xs">
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-              <span className="text-purple-400">Iconic</span>
+              <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+              <span className="text-orange-400">Iconic</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
               <span className="text-orange-400">Legendary</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-violet-400 rounded-full"></div>
-              <span className="text-violet-400">Epic</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-              <span className="text-blue-400">Rare</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-              <span className="text-green-400">Uncommon</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-              <span className="text-gray-400">Common</span>
-            </div>
             <div className="text-xs text-gray-500 mt-2">
-              Showing highest available rarity for each cyberware
+              All cyberware at maximum rarity
             </div>
           </div>
         </div>
