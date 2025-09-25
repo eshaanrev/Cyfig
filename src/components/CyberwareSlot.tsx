@@ -16,12 +16,8 @@ export const CyberwareSlot: React.FC<CyberwareSlotProps> = ({
 }) => {
   const getRarityColor = (rarity?: string) => {
     switch (rarity) {
-      case 'Iconic': return 'border-purple-400';
+      case 'Iconic': return 'border-orange-400';
       case 'Legendary': return 'border-orange-400';
-      case 'Epic': return 'border-violet-400';
-      case 'Rare': return 'border-blue-400';
-      case 'Uncommon': return 'border-green-400';
-      case 'Common': return 'border-gray-400';
       default: return 'border-gray-500';
     }
   };
