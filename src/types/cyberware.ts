@@ -3,8 +3,7 @@ export interface Cyberware {
   name: string;
   category: string;
   description: string;
-  rarity: 'Common' | 'Uncommon' | 'Rare' | 'Epic' | 'Legendary';
-  rarity: 'Common' | 'Uncommon' | 'Rare' | 'Epic' | 'Legendary' | 'Iconic';
+  rarity: 'Legendary' | 'Iconic';
   stats: string[];
   capacity: number;
 }
