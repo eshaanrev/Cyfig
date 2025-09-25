@@ -7,7 +7,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Axolotl',
       category: 'Frontal Cortex',
       description: 'Reduces cooldown for all cyberware after neutralizing an enemy',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['-7.5% Cooldown for all cyberware', 'Triggers on enemy kill'],
       capacity: 48
     },
@@ -16,7 +16,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Bioconductor',
       category: 'Frontal Cortex',
       description: 'Allows quickhacks to deal critical hits',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+35% Crit Chance with quickhacks', '-4 Max RAM'],
       capacity: 20
     },
@@ -34,7 +34,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Camillo RAM Manager',
       category: 'Frontal Cortex',
       description: 'Recovers RAM when it falls below threshold',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['Recovers 23% Max RAM when below 20%', '+2 Max RAM', '80 sec cooldown'],
       capacity: 10
     },
@@ -43,7 +43,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Ex-Disk',
       category: 'Frontal Cortex',
       description: 'Increases RAM and upload speed for quickhacks',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+6 Max RAM', '+35% upload speed'],
       capacity: 10
     },
@@ -52,7 +52,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Kerenzikov Boost System',
       category: 'Frontal Cortex',
       description: 'Improves Kerenzikov performance',
-      rarity: 'Rare',
+      rarity: 'Legendary',
       stats: ['-100% Stamina cost when shooting', '+15 time slow enhancement'],
       capacity: 3
     },
@@ -61,7 +61,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Mechatronic Core',
       category: 'Frontal Cortex',
       description: 'Increases damage against mechanical enemies',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+40% damage vs drones/robots/mechs', '+2 Max RAM'],
       capacity: 5
     },
@@ -70,7 +70,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Memory Boost',
       category: 'Frontal Cortex',
       description: 'Enhances memory and learning capabilities',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+10% XP Gain', '+5% Breach Protocol Duration'],
       capacity: 18
     },
@@ -88,7 +88,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Self-ICE',
       category: 'Frontal Cortex',
       description: 'Automatically negates enemy quickhacks',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['Auto-negate quickhack', '+2 Max RAM', '20 sec cooldown'],
       capacity: 5
     }
@@ -108,7 +108,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Biotech Σ Mk.4',
       category: 'Operating System',
       description: 'Combat-focused cyberdeck with DOT bonuses',
-      rarity: 'Legendary',
+      rarity: 'Iconic',
       stats: ['16 RAM', '8 Slots', '+15% Combat quickhack duration', '+25% Monowire vs DOT'],
       capacity: 16
     },
@@ -117,7 +117,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Militech Paraline Mk.5',
       category: 'Operating System',
       description: 'Military cyberdeck with Smart weapon synergy',
-      rarity: 'Legendary',
+      rarity: 'Iconic',
       stats: ['9 RAM', '8 Slots', '+10% quickhack damage', 'Smart weapon acceleration'],
       capacity: 14
     },
@@ -126,7 +126,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'NetWatch Netdriver Mk.1',
       category: 'Operating System',
       description: 'Professional netrunning interface',
-      rarity: 'Legendary',
+      rarity: 'Iconic',
       stats: ['13 RAM', '8 Slots', '-20% trace through cameras', '+30% device quickhack damage'],
       capacity: 25
     },
@@ -135,7 +135,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Militech "Falcon" Sandevistan',
       category: 'Operating System',
       description: 'Time-dilating combat enhancement system',
-      rarity: 'Legendary',
+      rarity: 'Iconic',
       stats: ['70% time slow', '+15% Crit Chance', '+12% Health on kill', '10 sec duration'],
       capacity: 39
     },
@@ -144,7 +144,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Militech "Apogee" Sandevistan',
       category: 'Operating System',
       description: 'Military-grade time dilation system',
-      rarity: 'Legendary',
+      rarity: 'Iconic',
       stats: ['85% time slow', '+20% headshot damage', '10% duration extension on kill'],
       capacity: 44
     },
@@ -153,7 +153,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Zetatech Sandevistan',
       category: 'Operating System',
       description: 'Aerial combat-focused time dilation',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['30% time slow (60% midair)', '+24% damage midair', '-30% fall damage'],
       capacity: 20
     },
@@ -171,7 +171,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Militech Berserk',
       category: 'Operating System',
       description: 'Combat stimulant system with damage immunity',
-      rarity: 'Legendary',
+      rarity: 'Iconic',
       stats: ['Invulnerable to damage', 'Melee weapons only', '+30% attack speed', '+50% damage at low health'],
       capacity: 35
     },
@@ -180,7 +180,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Zetatech Berserk',
       category: 'Operating System',
       description: 'Enhanced combat system with fall damage reduction',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+50% damage reduction', 'Health cannot drop below 25%', '+20% attack speed'],
       capacity: 16
     }
@@ -191,7 +191,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Gorilla Arms',
       category: 'Arms',
       description: 'Cybernetic arms with enhanced strength for Body checks',
-      rarity: 'Legendary',
+      rarity: 'Iconic',
       stats: ['+4 Body Attribute checks', 'Force open doors', 'Enhanced melee damage'],
       capacity: 8
     },
@@ -200,7 +200,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Mantis Blades',
       category: 'Arms',
       description: 'Retractable blade weapons for swift combat',
-      rarity: 'Legendary',
+      rarity: 'Iconic',
       stats: ['Blade weapons', 'Leap attack ability', 'Swift slashing attacks'],
       capacity: 8
     },
@@ -209,7 +209,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Monowire',
       category: 'Arms',
       description: 'Monofilament whip weapon with quickhack slot',
-      rarity: 'Legendary',
+      rarity: 'Iconic',
       stats: ['Physical damage', 'Empty quickhack slot', 'Whip attacks'],
       capacity: 8
     },
@@ -218,7 +218,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Projectile Launch System',
       category: 'Arms',
       description: 'Explosive projectile launcher',
-      rarity: 'Legendary',
+      rarity: 'Iconic',
       stats: ['Explosive projectiles', '+30% charged damage', '+25% explosion radius'],
       capacity: 8
     }
@@ -229,7 +229,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Basic Kiroshi Optics',
       category: 'Face',
       description: 'Standard optical enhancement with zoom',
-      rarity: 'Common',
+      rarity: 'Legendary',
       stats: ['-44% camera detection speed', '10x optical zoom'],
       capacity: 1
     },
@@ -238,7 +238,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Kiroshi "Clairvoyant" Optics',
       category: 'Face',
       description: 'Advanced enemy detection system',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['Highlights enemies within 19.5m', '60 sec effect duration', '10x zoom'],
       capacity: 8
     },
@@ -247,7 +247,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Kiroshi "Cockatrice" Optics',
       category: 'Face',
       description: 'Crit-focused optical enhancement',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+35% Crit Chance', '10x optical zoom'],
       capacity: 30
     },
@@ -256,7 +256,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Kiroshi "The Oracle" Optics',
       category: 'Face',
       description: 'Ultimate tactical awareness system',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['Highlights enemies, cameras, explosives', '39m range', '10x zoom'],
       capacity: 10
     },
@@ -265,7 +265,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Kiroshi "Stalker" Optics',
       category: 'Face',
       description: 'Tech weapon targeting system',
-      rarity: 'Rare',
+      rarity: 'Legendary',
       stats: ['Highlights enemies behind cover', 'Tech weapon integration', '53m range'],
       capacity: 2
     },
@@ -285,7 +285,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Dense Marrow',
       category: 'Skeleton',
       description: 'Enhanced bone density for melee combat',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+27% melee damage', '+20% melee stamina cost'],
       capacity: 16
     },
@@ -294,7 +294,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Epimorphic Skeleton',
       category: 'Skeleton',
       description: 'Advanced skeletal enhancement',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+13% Max Health'],
       capacity: 40
     },
@@ -303,7 +303,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Kinetic Frame',
       category: 'Skeleton',
       description: 'Movement-based damage mitigation',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+16% Mitigation Chance when Stamina above 85%'],
       capacity: 16
     },
@@ -312,7 +312,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Para Bellum',
       category: 'Skeleton',
       description: 'Military-grade armor enhancement',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+13% Armor'],
       capacity: 25
     },
@@ -330,7 +330,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Spring Joints',
       category: 'Skeleton',
       description: 'Enhanced joint flexibility for damage mitigation',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+16% Mitigation Strength'],
       capacity: 16
     }
@@ -341,7 +341,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Ballistic Coprocessor',
       category: 'Hands',
       description: 'Enhanced weapon handling and ricochet control',
-      rarity: 'Rare',
+      rarity: 'Legendary',
       stats: ['+30% ricochet damage', 'Ricochet trajectory preview'],
       capacity: 2
     },
@@ -350,7 +350,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Smart Link',
       category: 'Hands',
       description: 'Interface for smart weapon targeting',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['Smart weapon targeting', '+20% target-lock duration', '+2 Max RAM'],
       capacity: 4
     },
@@ -359,7 +359,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Shock Absorber',
       category: 'Hands',
       description: 'Reduces weapon recoil',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['-24% recoil'],
       capacity: 12
     },
@@ -368,7 +368,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Microgenerator',
       category: 'Hands',
       description: 'Electrical discharge on reload',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['250 Electrical damage on reload', 'Damage scales with bullets reloaded'],
       capacity: 9
     },
@@ -377,7 +377,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Handle Wrap',
       category: 'Hands',
       description: 'Enhanced throwing weapon handling',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+27% Crit Chance with throwables', '6 sec duration'],
       capacity: 8
     },
@@ -397,7 +397,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Adrenaline Rush',
       category: 'Nervous System',
       description: 'Combat movement speed boost',
-      rarity: 'Rare',
+      rarity: 'Legendary',
       stats: ['+40% movement speed', '9 sec duration on combat entry'],
       capacity: 6
     },
@@ -406,7 +406,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Adreno-trigger',
       category: 'Nervous System',
       description: 'Enhanced combat movement system',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+30% movement speed', '35 sec duration'],
       capacity: 20
     },
@@ -415,7 +415,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Kerenzikov',
       category: 'Nervous System',
       description: 'Time dilation during evasive maneuvers',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['60% time slow during slide/dodge/dash', '3.75 sec duration', '6 sec cooldown'],
       capacity: 12
     },
@@ -424,7 +424,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Reflex Tuner',
       category: 'Nervous System',
       description: 'Emergency time dilation at low health',
-      rarity: 'Rare',
+      rarity: 'Legendary',
       stats: ['60% time slow at <25% health', '4.5 sec duration', '35 sec cooldown'],
       capacity: 5
     },
@@ -433,7 +433,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Synaptic Accelerator',
       category: 'Nervous System',
       description: 'Pre-combat time dilation',
-      rarity: 'Rare',
+      rarity: 'Legendary',
       stats: ['50% time slow at 50% detection', '4.5 sec duration', '60 sec cooldown'],
       capacity: 5
     },
@@ -442,7 +442,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'NeoFiber',
       category: 'Nervous System',
       description: 'Damage mitigation enhancement',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+11% Mitigation Chance', '+11% Mitigation Strength'],
       capacity: 14
     },
@@ -451,7 +451,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Visual Cortex Support',
       category: 'Nervous System',
       description: 'Distance-based critical hit enhancement',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+30% Crit Chance at 30m', 'Distance scaling'],
       capacity: 20
     }
@@ -462,7 +462,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Adrenaline Booster',
       category: 'Circulatory System',
       description: 'Stamina recovery from melee kills',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+25% Stamina on melee kill'],
       capacity: 14
     },
@@ -471,7 +471,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Biomonitor',
       category: 'Circulatory System',
       description: 'Automatic health item usage',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['Auto-heal at 50% HP', '+16% health item effectiveness'],
       capacity: 14
     },
@@ -480,7 +480,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Second Heart',
       category: 'Circulatory System',
       description: 'Emergency revival system',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+100% Health when reaching 0 HP', '220 sec cooldown'],
       capacity: 30
     },
@@ -489,7 +489,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Blood Pump',
       category: 'Circulatory System',
       description: 'Powerful health restoration device',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['110 instant Health', '23 Health/sec regen', '6 sec duration'],
       capacity: 15
     },
@@ -498,7 +498,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Heal-On-Kill',
       category: 'Circulatory System',
       description: 'Health recovery from eliminations',
-      rarity: 'Rare',
+      rarity: 'Legendary',
       stats: ['Health restored on enemy kill'],
       capacity: 10
     },
@@ -507,7 +507,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Microrotors',
       category: 'Circulatory System',
       description: 'Enhanced melee attack speed',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+25% melee attack speed'],
       capacity: 12
     },
@@ -516,7 +516,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'ThreatEvac',
       category: 'Circulatory System',
       description: 'Emergency movement boost at low health',
-      rarity: 'Rare',
+      rarity: 'Legendary',
       stats: ['+29% movement speed at 25% HP', 'Scales with health loss'],
       capacity: 5
     }
@@ -527,7 +527,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Armadillo',
       category: 'Integumentary System',
       description: 'Enhanced rear and side protection',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['94 Armor', '+32% Armor vs side/rear attacks'],
       capacity: 16
     },
@@ -536,7 +536,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Subdermal Armor',
       category: 'Integumentary System',
       description: 'Basic armor plating beneath skin',
-      rarity: 'Rare',
+      rarity: 'Legendary',
       stats: ['49 Armor', 'Simple but effective'],
       capacity: 5
     },
@@ -545,7 +545,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Optical Camo',
       category: 'Integumentary System',
       description: 'Active camouflage system',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['-90% visibility to enemies', '7 sec duration', '50 sec cooldown'],
       capacity: 20
     },
@@ -554,7 +554,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Cogito Lattice',
       category: 'Integumentary System',
       description: 'Armor with RAM-based bonus',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['54 Armor', '+240% Armor when RAM below 10'],
       capacity: 12
     },
@@ -563,7 +563,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Pain Editor',
       category: 'Integumentary System',
       description: 'Advanced damage reduction system',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['108 Armor', '-7% all incoming damage'],
       capacity: 35
     },
@@ -581,7 +581,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Shock-n-Awe',
       category: 'Integumentary System',
       description: 'Electrical discharge when taking damage',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['92 Armor', '10% chance for 500 electrical damage'],
       capacity: 25
     }
@@ -592,7 +592,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Fortified Ankles',
       category: 'Legs',
       description: 'Enhanced jumping with charge capability',
-      rarity: 'Rare',
+      rarity: 'Legendary',
       stats: ['Charge jumps for distance', 'Hold to charge jump'],
       capacity: 6
     },
@@ -601,7 +601,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Reinforced Tendons',
       category: 'Legs',
       description: 'Double jump capability',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['Double jump in midair', 'Enhanced mobility'],
       capacity: 8
     },
@@ -610,7 +610,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: "Jenkins' Tendons",
       category: 'Legs',
       description: 'Variable sprint speed enhancement',
-      rarity: 'Rare',
+      rarity: 'Legendary',
       stats: ['+30% sprint speed (tapering to +10%)', '5 sec duration'],
       capacity: 6
     },
@@ -619,7 +619,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Leeroy Ligament System',
       category: 'Legs',
       description: 'Constant movement speed boost',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+20% Movement Speed'],
       capacity: 8
     },
@@ -628,7 +628,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       name: 'Lynx Paws',
       category: 'Legs',
       description: 'Stealth-focused movement enhancement',
-      rarity: 'Epic',
+      rarity: 'Legendary',
       stats: ['+50% quieter movement', '+12% crouched speed', '-20% fall damage'],
       capacity: 5
     }
