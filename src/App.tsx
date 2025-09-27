@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CyberwareSlot } from './components/CyberwareSlot';
 import { CyberwareSelector } from './components/CyberwareSelector';
 import { HumanSilhouette } from './components/HumanSilhouette';
+import { StatsSidebar } from './components/StatsSidebar';
 import { cyberwareSlots } from './data/slots';
 import { cyberwareData } from './data/cyberware';
 import { CyberwareSlot as SlotType, Cyberware } from './types/cyberware';
@@ -144,7 +145,7 @@ function App() {
       </div>
 
       {/* Side panels */}
-      <div className="absolute left-6 top-1/2 transform -translate-y-1/2 space-y-6 z-10">
+      <div className="absolute left-6 top-1/2 transform -translate-y-1/2 space-y-4 z-10">
         {/* Armor display */}
         <div className="bg-gray-900/90 backdrop-blur-sm border border-blue-400/40 rounded-lg p-4 w-48">
           <div className="flex items-center space-x-2 mb-3">
@@ -218,6 +219,11 @@ function App() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Right side stats panel */}
+      <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-10">
+        <StatsSidebar slots={slots} />
       </div>
 
       {/* Main configurator area */}
