@@ -5,5 +5,5 @@ Cyfig is an online cyberware configurator for Cyberpunk 2077.
 - Cyberware capacity meter
 - Armor meter
 - Sidebar with all buffs listed
-- Perk-based slots included
+- Edgerunner toggle
 - Cool red and blue theme
