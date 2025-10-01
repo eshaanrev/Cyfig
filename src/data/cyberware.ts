@@ -287,61 +287,124 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     }
   ],
   'Skeleton': [
-    {
-      id: 'dense-marrow',
-      name: 'Dense Marrow',
-      category: 'Skeleton',
-      description: 'Enhanced bone density for melee combat',
-      rarity: 'Legendary',
-      stats: ['+27% melee damage', '+20% melee stamina cost'],
-      capacity: 16
-    },
-    {
-      id: 'epimorphic-skeleton',
-      name: 'Epimorphic Skeleton',
-      category: 'Skeleton',
-      description: 'Advanced skeletal enhancement',
-      rarity: 'Legendary',
-      stats: ['+13% Max Health'],
-      capacity: 40
-    },
-    {
-      id: 'kinetic-frame',
-      name: 'Kinetic Frame',
-      category: 'Skeleton',
-      description: 'Movement-based damage mitigation',
-      rarity: 'Legendary',
-      stats: ['+16% Mitigation Chance when Stamina above 85%'],
-      capacity: 16
-    },
-    {
-      id: 'para-bellum',
-      name: 'Para Bellum',
-      category: 'Skeleton',
-      description: 'Military-grade armor enhancement',
-      rarity: 'Legendary',
-      stats: ['+13% Armor'],
-      capacity: 25
-    },
-    {
-      id: 'rara-avis',
-      name: 'Rara Avis',
-      category: 'Skeleton',
-      description: 'Exceptional armor plating',
-      rarity: 'Iconic',
-      stats: ['+40% Armor'],
-      capacity: 45
-    },
-    {
-      id: 'spring-joints',
-      name: 'Spring Joints',
-      category: 'Skeleton',
-      description: 'Enhanced joint flexibility for damage mitigation',
-      rarity: 'Legendary',
-      stats: ['+16% Mitigation Strength'],
-      capacity: 16
-    }
-  ],
+  {
+    id: 'bionic-joints',
+    name: 'Bionic Joints',
+    category: 'Skeleton',
+    description: 'Increases armor via mechatronic joint enhancements',
+    rarity: 'Varies (Common → Legendary)',
+    stats: ['+25-85 Armor'],
+    capacity: 8
+  },
+  {
+    id: 'titanium-bones',
+    name: 'Titanium Bones',
+    category: 'Skeleton',
+    description: 'Reinforced skeletal structure enabling higher carrying capacity',
+    rarity: 'Varies',
+    stats: ['+30-66% Carrying Capacity'],
+    capacity: 5
+  },
+  {
+    id: 'epimorphic-skeleton',
+    name: 'Epimorphic Skeleton',
+    category: 'Skeleton',
+    description: 'Augments maximum health and provides armor boost',
+    rarity: 'Varies',
+    stats: ['+10-13% Max Health', '96-126 Armor'],
+    capacity: 40
+  },
+  {
+    id: 'universal-booster',
+    name: 'Universal Booster',
+    category: 'Skeleton',
+    description: 'Health items also confer temporary armor and reduce stamina costs',
+    rarity: 'Varies',
+    stats: ['Health Items grant +Armor for 5 sec', '−Stamina costs for 5 sec'],
+    capacity: null
+  },
+  {
+    id: 'scarab',
+    name: 'Scarab',
+    category: 'Skeleton',
+    description: 'Provides armor bonus when crouched at the cost of movement speed',
+    rarity: 'Varies',
+    stats: ['+30-130 Armor while crouched', '−20% Movement Speed'],
+    capacity: 11
+  },
+  {
+    id: 'spring-joints',
+    name: 'Spring Joints',
+    category: 'Skeleton',
+    description: 'Enhances mitigation strength',
+    rarity: 'Varies',
+    stats: ['+19% Mitigation Strength'],
+    capacity: null
+  },
+  {
+    id: 'scar-coalescer',
+    name: 'Scar Coalescer',
+    category: 'Skeleton',
+    description: 'Grants extra armor when health drops below 50%',
+    rarity: 'Varies',
+    stats: ['+22% Armor (when <50% Health)'],
+    capacity: null
+  },
+  {
+    id: 'ram-recoup',
+    name: 'RAM Recoup',
+    category: 'Skeleton',
+    description: 'Restores RAM when taking damage and increases max RAM',
+    rarity: 'Varies',
+    stats: ['Restore RAM equal to 0.26-0.28% of damage taken', '+2 Max RAM'],
+    capacity: null
+  },
+  {
+    id: 'kinetic-frame',
+    name: 'Kinetic Frame',
+    category: 'Skeleton',
+    description: 'Increases mitigation chance when stamina is high',
+    rarity: 'Varies',
+    stats: ['+16% Mitigation Chance (when Stamina > 85%)'],
+    capacity: null
+  },
+  {
+    id: 'dense-marrow',
+    name: 'Dense Marrow',
+    category: 'Skeleton',
+    description: 'Boosts melee damage at cost of increased stamina cost',
+    rarity: 'Varies',
+    stats: ['+15-27% Melee Damage', '+20% Melee Stamina Cost'],
+    capacity: 13
+  },
+  {
+    id: 'para-bellum',
+    name: 'Para Bellum',
+    category: 'Skeleton',
+    description: 'Percentage-based armor enhancer',
+    rarity: 'Varies',
+    stats: ['+8-13% Armor'],
+    capacity: 20
+  },
+  {
+    id: 'rara-avis',
+    name: 'Rara Avis',
+    category: 'Skeleton',
+    description: 'Iconic version of Para Bellum offering extremely high armor bonus',
+    rarity: 'Iconic / Legendary',
+    stats: ['+35% Armor'],
+    capacity: null
+  },
+  {
+    id: 'feen-x',
+    name: 'Feen-X',
+    category: 'Skeleton',
+    description: 'Boosts RAM regeneration under low-RAM conditions',
+    rarity: 'Varies',
+    stats: ['+250% RAM Regen (when available RAM is low)'],
+    capacity: 13
+  }
+],
   'Hands': [
     {
       id: 'ballistic-coprocessor',
