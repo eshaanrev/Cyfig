@@ -113,15 +113,6 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       capacity: 16
     },
     {
-      id: 'militech-paraline',
-      name: 'Militech Paraline Mk.5',
-      category: 'Operating System',
-      description: 'Military cyberdeck with Smart weapon synergy',
-      rarity: 'Iconic',
-      stats: ['9 RAM', '8 Slots', '+10% quickhack damage', 'Smart weapon acceleration'],
-      capacity: 14
-    },
-    {
       id: 'netwatch-netdriver',
       name: 'NetWatch Netdriver Mk.1',
       category: 'Operating System',
@@ -130,6 +121,22 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       stats: ['13 RAM', '8 Slots', '-20% trace through cameras', '+30% device quickhack damage'],
       capacity: 25
     },
+{
+  id: 'tetratronic-rippler',
+  name: 'Tetratronic Rippler Mk.5',
+  category: 'Operating System',
+  description: 'Balanced cyberdeck enhancing both combat and non-combat quickhacks',
+  rarity: 'Legendary',
+  stats: [
+    '20 RAM',
+    '8 Slots',
+    '+15% weapon damage vs non-Combat quickhack affected enemies',
+    '+40% damage for Combat quickhacks when queued after a non-Combat quickhack',
+    '+ automatically upload Reboot Optics & Weapon Glitch on Overclock activation'
+  ],
+  capacity: 16
+},
+
     {
       id: 'militech-falcon',
       name: 'Militech "Falcon" Sandevistan',
