@@ -38,6 +38,20 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       stats: ['Recovers 23% Max RAM when below 20%', '+2 Max RAM', '80 sec cooldown'],
       capacity: 10
     },
+{
+  id: 'ram-reallocator',
+  name: 'RAM Reallocator',
+  category: 'Frontal Cortex',
+  description: 'Inst­antly recovers a portion of RAM when low and increases max RAM',
+  rarity: 'Iconic',
+  stats: [
+    'Recovers 45% Max RAM when available RAM ≤ 20%',
+    '+2 Max RAM',
+    'Cooldown: 95-85 sec',
+    '-3 sec Cooldown per Intelligence point'
+  ],
+  capacity: 40
+},
     {
       id: 'ex-disk',
       name: 'Ex-Disk',
