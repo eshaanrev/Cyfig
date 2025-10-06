@@ -306,7 +306,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'Bionic Joints',
     category: 'Skeleton',
     description: 'Increases armor via mechatronic joint enhancements',
-    rarity: 'Varies (Common → Legendary)',
+    rarity: 'Legendary',
     stats: ['+25-85 Armor'],
     capacity: 8
   },
@@ -315,7 +315,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'Titanium Bones',
     category: 'Skeleton',
     description: 'Reinforced skeletal structure enabling higher carrying capacity',
-    rarity: 'Varies',
+    rarity: 'Legendary',
     stats: ['+30-66% Carrying Capacity'],
     capacity: 5
   },
@@ -324,7 +324,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'Epimorphic Skeleton',
     category: 'Skeleton',
     description: 'Augments maximum health and provides armor boost',
-    rarity: 'Varies',
+    rarity: 'Legendary',
     stats: ['+10-13% Max Health', '96-126 Armor'],
     capacity: 40
   },
@@ -333,7 +333,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'Universal Booster',
     category: 'Skeleton',
     description: 'Health items also confer temporary armor and reduce stamina costs',
-    rarity: 'Varies',
+    rarity: 'Legendary',
     stats: ['Health Items grant +Armor for 5 sec', '−Stamina costs for 5 sec'],
     capacity: null
   },
@@ -342,7 +342,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'Scarab',
     category: 'Skeleton',
     description: 'Provides armor bonus when crouched at the cost of movement speed',
-    rarity: 'Varies',
+    rarity: 'Legendary',
     stats: ['+30-130 Armor while crouched', '−20% Movement Speed'],
     capacity: 11
   },
@@ -351,7 +351,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'Spring Joints',
     category: 'Skeleton',
     description: 'Enhances mitigation strength',
-    rarity: 'Varies',
+    rarity: 'Legendary',
     stats: ['+19% Mitigation Strength'],
     capacity: null
   },
@@ -360,7 +360,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'Scar Coalescer',
     category: 'Skeleton',
     description: 'Grants extra armor when health drops below 50%',
-    rarity: 'Varies',
+    rarity: 'Legendary',
     stats: ['+22% Armor (when <50% Health)'],
     capacity: null
   },
@@ -369,7 +369,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'RAM Recoup',
     category: 'Skeleton',
     description: 'Restores RAM when taking damage and increases max RAM',
-    rarity: 'Varies',
+    rarity: 'Legendary',
     stats: ['Restore RAM equal to 0.26-0.28% of damage taken', '+2 Max RAM'],
     capacity: null
   },
@@ -378,7 +378,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'Kinetic Frame',
     category: 'Skeleton',
     description: 'Increases mitigation chance when stamina is high',
-    rarity: 'Varies',
+    rarity: 'Legendary',
     stats: ['+16% Mitigation Chance (when Stamina > 85%)'],
     capacity: null
   },
@@ -387,7 +387,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'Dense Marrow',
     category: 'Skeleton',
     description: 'Boosts melee damage at cost of increased stamina cost',
-    rarity: 'Varies',
+    rarity: 'Legendary',
     stats: ['+15-27% Melee Damage', '+20% Melee Stamina Cost'],
     capacity: 13
   },
@@ -396,7 +396,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'Para Bellum',
     category: 'Skeleton',
     description: 'Percentage-based armor enhancer',
-    rarity: 'Varies',
+    rarity: 'Legendary',
     stats: ['+8-13% Armor'],
     capacity: 20
   },
@@ -405,7 +405,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'Rara Avis',
     category: 'Skeleton',
     description: 'Iconic version of Para Bellum offering extremely high armor bonus',
-    rarity: 'Iconic / Legendary',
+    rarity: 'Iconic',
     stats: ['+35% Armor'],
     capacity: null
   },
@@ -414,7 +414,7 @@ export const cyberwareData: Record<string, Cyberware[]> = {
     name: 'Feen-X',
     category: 'Skeleton',
     description: 'Boosts RAM regeneration under low-RAM conditions',
-    rarity: 'Varies',
+    rarity: 'Legendary',
     stats: ['+250% RAM Regen (when available RAM is low)'],
     capacity: 13
   }
