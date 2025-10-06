@@ -668,7 +668,23 @@ export const cyberwareData: Record<string, Cyberware[]> = {
       rarity: 'Legendary',
       stats: ['92 Armor', '10% chance for 500 electrical damage'],
       capacity: 25
-    }
+    },
+{
+  id: 'cellular-adapter',
+  name: 'Cellular Adapter',
+  category: 'Integumentary System',
+  description: 'Implant that scales with Technical Ability, granting resistance, damage, and recharge bonuses.',
+  rarity: 'Legendary',
+  stats: [
+    'Armor: 162',
+    'For each point in Technical Ability: +1.0% Explosion Resistance',
+    'For each point in Technical Ability: +0.5% Tech Weapon Damage',
+    'For each point in Technical Ability: +0.5% Health Item Recharge Speed',
+    'For each point in Technical Ability: +0.5% Grenade Recharge Speed'
+  ],
+  capacity: 24
+}
+
   ],
   'Legs': [
     {
