@@ -24,24 +24,24 @@ export const CyberwareSlot: React.FC<CyberwareSlotProps> = ({
 
   return (
     <div
-      className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300"
+      className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 hover:scale-105 animate-fadeIn"
       style={{ top: slot.position.top, left: slot.position.left }}
       onClick={onClick}
     >
       <div
         className={`
           relative w-24 h-24 border-2 rounded-lg bg-gray-900/80 backdrop-blur-sm
-          hover:bg-gray-800/90 transition-all duration-300
-          ${isSelected 
-            ? 'border-red-400 shadow-lg shadow-red-400/50 scale-110' 
-            : slot.installedCyberware 
-              ? `${getRarityColor(slot.installedCyberware.rarity)} shadow-md`
-              : 'border-gray-600 hover:border-blue-400'
+          hover:bg-gray-800/90 transition-all duration-300 hover:shadow-xl
+          ${isSelected
+            ? 'border-red-400 shadow-lg shadow-red-400/50 scale-110 animate-glow'
+            : slot.installedCyberware
+              ? `${getRarityColor(slot.installedCyberware.rarity)} shadow-md hover:shadow-lg`
+              : 'border-gray-600 hover:border-blue-400 hover:shadow-blue-400/20'
           }
         `}
       >
         {/* Slot label */}
-        <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-400 font-mono whitespace-nowrap">
+        <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 text-xs text-blue-400 font-mono whitespace-nowrap transition-all duration-200 group-hover:text-blue-300">
           {slot.name}
         </div>
         
@@ -63,7 +63,7 @@ export const CyberwareSlot: React.FC<CyberwareSlotProps> = ({
                   e.stopPropagation();
                   onRemove();
                 }}
-                className="absolute -top-2 -right-2 w-6 h-6 bg-red-600 hover:bg-red-500 text-white text-xs rounded-full flex items-center justify-center transition-colors duration-200"
+                className="absolute -top-2 -right-2 w-6 h-6 bg-red-600 hover:bg-red-500 text-white text-xs rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 hover:rotate-90 shadow-lg hover:shadow-red-500/50"
               >
                 ×
               </button>
@@ -74,10 +74,15 @@ export const CyberwareSlot: React.FC<CyberwareSlotProps> = ({
         </div>
         
         {/* Corner decorations */}
-        <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-red-400/30"></div>
-        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-red-400/30"></div>
-        <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-red-400/30"></div>
-        <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-red-400/30"></div>
+        <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-red-400/30 transition-all duration-300 hover:border-red-400/60"></div>
+        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-red-400/30 transition-all duration-300 hover:border-red-400/60"></div>
+        <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-red-400/30 transition-all duration-300 hover:border-red-400/60"></div>
+        <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-red-400/30 transition-all duration-300 hover:border-red-400/60"></div>
+
+        {/* Pulse effect for selected slot */}
+        {isSelected && (
+          <div className="absolute inset-0 border-2 border-red-400 rounded-lg animate-ping opacity-20"></div>
+        )}
       </div>
     </div>
   );

@@ -136,16 +136,16 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ slots }) => {
   };
 
   return (
-    <div className="bg-gray-900/90 backdrop-blur-sm border border-cyan-400/40 rounded-lg p-4 w-64">
+    <div className="bg-gray-900/90 backdrop-blur-sm border border-cyan-400/40 rounded-lg p-4 w-64 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 animate-slideIn">
       <div className="flex items-center space-x-2 mb-4">
-        <BarChart3 className="w-5 h-5 text-cyan-400" />
+        <BarChart3 className="w-5 h-5 text-cyan-400 transition-transform duration-300 hover:rotate-12" />
         <span className="text-cyan-400 font-mono text-sm">COMBINED STATS</span>
       </div>
       
       {statEntries.length > 0 ? (
-        <div className="space-y-2 max-h-80 overflow-y-auto">
+        <div className="space-y-2 max-h-80 overflow-y-auto scrollbar-thin">
           {statEntries.map((stat, index) => (
-            <div key={index} className="flex justify-between items-center text-xs">
+            <div key={index} className="flex justify-between items-center text-xs transition-all duration-200 hover:scale-105 hover:bg-gray-800/50 p-1 rounded animate-fadeIn" style={{ animationDelay: `${index * 0.05}s` }}>
               <span className="text-gray-300 font-mono flex-1 pr-2">
                 {stat.type}
               </span>

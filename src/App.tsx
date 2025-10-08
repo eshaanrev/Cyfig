@@ -104,10 +104,10 @@ function App() {
       </div>
 
       {/* Header */}
-      <div className="relative z-10 p-6">
+      <div className="relative z-10 p-6 animate-slideIn">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <User className="w-8 h-8 text-red-400" />
+            <User className="w-8 h-8 text-red-400 animate-pulse-slow" />
             <div>
               <h1 className="text-3xl font-mono text-red-400 tracking-wider">CYFIG</h1>
               <p className="text-sm text-blue-400 font-mono">CYBERWARE CONFIGURATOR v2077</p>
@@ -115,8 +115,8 @@ function App() {
           </div>
           
           <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2">
-              <Cpu className="w-5 h-5 text-blue-400" />
+            <div className="flex items-center space-x-2 transition-all duration-300 hover:scale-105">
+              <Cpu className="w-5 h-5 text-blue-400 transition-transform duration-300 hover:rotate-12" />
               <span className="text-white font-mono">
                 {installedCount}/{totalSlots} INSTALLED
               </span>
@@ -127,10 +127,10 @@ function App() {
               <button
                 onClick={() => setEdgerunnerPerk(!edgerunnerPerk)}
                 className={`
-                  px-3 py-1 rounded border font-mono text-sm transition-all duration-200
-                  ${edgerunnerPerk 
-                    ? 'bg-orange-600/20 border-orange-400 text-orange-400 shadow-md shadow-orange-400/20' 
-                    : 'bg-gray-800/50 border-gray-600 text-gray-400 hover:border-orange-400 hover:text-orange-400'
+                  px-3 py-1 rounded border font-mono text-sm transition-all duration-300 hover:scale-105
+                  ${edgerunnerPerk
+                    ? 'bg-orange-600/20 border-orange-400 text-orange-400 shadow-md shadow-orange-400/20 animate-pulse-slow'
+                    : 'bg-gray-800/50 border-gray-600 text-gray-400 hover:border-orange-400 hover:text-orange-400 hover:shadow-orange-400/10'
                   }
                 `}
               >
@@ -145,9 +145,9 @@ function App() {
       </div>
 
       {/* Side panels */}
-      <div className="absolute left-6 top-1/2 transform -translate-y-1/2 space-y-4 z-10">
+      <div className="absolute left-6 top-1/2 transform -translate-y-1/2 space-y-4 z-10 animate-slideIn">
         {/* Armor display */}
-        <div className="bg-gray-900/90 backdrop-blur-sm border border-blue-400/40 rounded-lg p-4 w-48">
+        <div className="bg-gray-900/90 backdrop-blur-sm border border-blue-400/40 rounded-lg p-4 w-48 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-400/20">
           <div className="flex items-center space-x-2 mb-3">
             <Shield className="w-5 h-5 text-blue-400" />
             <span className="text-blue-400 font-mono text-sm">ARMOR</span>
@@ -157,18 +157,20 @@ function App() {
               <span className="text-gray-400">Current</span>
               <span className="text-white">{totalArmor}</span>
             </div>
-            <div className="w-full bg-gray-700 rounded-full h-2">
-              <div 
-                className="bg-gradient-to-r from-blue-600 to-blue-400 h-2 rounded-full transition-all duration-500"
+            <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+              <div
+                className="bg-gradient-to-r from-blue-600 to-blue-400 h-2 rounded-full transition-all duration-500 relative"
                 style={{ width: `${Math.min((totalArmor / 1000) * 100, 100)}%` }}
-              ></div>
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
+              </div>
             </div>
             <div className="text-xs text-gray-400 font-mono">From Cyberware</div>
           </div>
         </div>
 
         {/* Cyberware capacity meter */}
-        <div className="bg-gray-900/90 backdrop-blur-sm border border-red-400/40 rounded-lg p-4 w-48">
+        <div className="bg-gray-900/90 backdrop-blur-sm border border-red-400/40 rounded-lg p-4 w-48 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-red-400/20">
           <div className="flex items-center space-x-2 mb-3">
             <Activity className="w-5 h-5 text-red-400" />
             <span className="text-red-400 font-mono text-sm">CAPACITY</span>
@@ -181,20 +183,22 @@ function App() {
                 {edgerunnerPerk && <span className="text-orange-400 ml-1">(+50)</span>}
               </span>
             </div>
-            <div className="w-full bg-gray-700 rounded-full h-2">
-              <div 
-                className={`h-2 rounded-full transition-all duration-500 ${
-                  usedCapacity > maxCapacity 
+            <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+              <div
+                className={`h-2 rounded-full transition-all duration-500 relative ${
+                  usedCapacity > maxCapacity
                     ? 'bg-gradient-to-r from-red-600 to-red-500'
-                    : usedCapacity > maxCapacity * 0.8 
+                    : usedCapacity > maxCapacity * 0.8
                     ? 'bg-gradient-to-r from-yellow-600 to-yellow-400'
                     : 'bg-gradient-to-r from-green-600 to-green-400'
                 }`}
                 style={{ width: `${Math.min((usedCapacity / maxCapacity) * 100, 100)}%` }}
-              ></div>
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
+              </div>
             </div>
             {usedCapacity > maxCapacity && (
-              <div className="text-xs text-red-400 font-mono">OVERCAPACITY!</div>
+              <div className="text-xs text-red-400 font-mono animate-pulse">OVERCAPACITY!</div>
             )}
             {edgerunnerPerk && (
               <div className="text-xs text-orange-400 font-mono">EDGERUNNER ACTIVE</div>
@@ -203,15 +207,15 @@ function App() {
         </div>
 
         {/* Rarity legend */}
-        <div className="bg-gray-900/90 backdrop-blur-sm border border-gray-400/40 rounded-lg p-4 w-48">
+        <div className="bg-gray-900/90 backdrop-blur-sm border border-gray-400/40 rounded-lg p-4 w-48 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-gray-400/10">
           <div className="text-gray-400 font-mono text-sm mb-2">RARITY LEVELS</div>
           <div className="space-y-1 text-xs">
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+              <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
               <span className="text-orange-400">Iconic</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+              <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
               <span className="text-orange-400">Legendary</span>
             </div>
             <div className="text-xs text-gray-500 mt-2">
@@ -260,7 +264,7 @@ function App() {
       </div>
 
       {/* Status bar */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gray-900/90 backdrop-blur-sm border-t border-red-400/40 p-3">
+      <div className="absolute bottom-0 left-0 right-0 bg-gray-900/90 backdrop-blur-sm border-t border-red-400/40 p-3 transition-all duration-300">
         <div className="flex justify-between items-center text-sm font-mono">
           <span className="text-red-400">
             {selectedSlot ? `Configuring: ${selectedSlotData?.name}` : 'Select a slot to install cyberware'}

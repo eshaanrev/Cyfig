@@ -2,12 +2,12 @@ import React from 'react';
 
 export const HumanSilhouette: React.FC = () => {
   return (
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0">
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 animate-fadeIn">
       <svg
         width="200"
         height="400"
         viewBox="0 0 200 400"
-        className="opacity-20"
+        className="opacity-20 transition-opacity duration-500 hover:opacity-30"
       >
         {/* Human silhouette */}
         <defs>
@@ -19,7 +19,7 @@ export const HumanSilhouette: React.FC = () => {
         </defs>
         
         {/* Head */}
-        <ellipse cx="100" cy="50" rx="35" ry="45" fill="url(#bodyGradient)" stroke="rgb(59, 130, 246)" strokeWidth="1" />
+        <ellipse cx="100" cy="50" rx="35" ry="45" fill="url(#bodyGradient)" stroke="rgb(59, 130, 246)" strokeWidth="1" className="transition-all duration-300" />
         
         {/* Neck */}
         <rect x="90" y="90" width="20" height="25" fill="url(#bodyGradient)" stroke="rgb(59, 130, 246)" strokeWidth="1" />
@@ -36,8 +36,8 @@ export const HumanSilhouette: React.FC = () => {
         <ellipse cx="120" cy="300" rx="18" ry="75" fill="url(#bodyGradient)" stroke="rgb(59, 130, 246)" strokeWidth="1" />
         
         {/* Tech lines overlay */}
-        <line x1="100" y1="30" x2="100" y2="370" stroke="rgb(59, 130, 246)" strokeWidth="0.5" opacity="0.5" strokeDasharray="2,2" />
-        <line x1="30" y1="200" x2="170" y2="200" stroke="rgb(59, 130, 246)" strokeWidth="0.5" opacity="0.5" strokeDasharray="2,2" />
+        <line x1="100" y1="30" x2="100" y2="370" stroke="rgb(59, 130, 246)" strokeWidth="0.5" opacity="0.5" strokeDasharray="2,2" className="animate-pulse-slow" />
+        <line x1="30" y1="200" x2="170" y2="200" stroke="rgb(59, 130, 246)" strokeWidth="0.5" opacity="0.5" strokeDasharray="2,2" className="animate-pulse-slow" />
       </svg>
     </div>
   );

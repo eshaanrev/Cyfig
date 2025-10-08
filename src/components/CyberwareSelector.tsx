@@ -30,8 +30,8 @@ export const CyberwareSelector: React.FC<CyberwareSelectorProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center">
-      <div className="bg-gray-900 border-2 border-red-400 rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[85vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center animate-fadeIn">
+      <div className="bg-gray-900 border-2 border-red-400 rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[85vh] overflow-y-auto shadow-2xl shadow-red-400/20 animate-slideIn scrollbar-thin">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <div>
@@ -42,7 +42,7 @@ export const CyberwareSelector: React.FC<CyberwareSelectorProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white text-2xl transition-colors duration-200 w-8 h-8 flex items-center justify-center"
+            className="text-gray-400 hover:text-white text-2xl transition-all duration-200 w-8 h-8 flex items-center justify-center hover:bg-red-600/20 rounded hover:rotate-90"
           >
             ×
           </button>
@@ -50,13 +50,14 @@ export const CyberwareSelector: React.FC<CyberwareSelectorProps> = ({
 
         {/* Cyberware grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {cyberware.map((item) => (
+          {cyberware.map((item, index) => (
             <div
               key={item.id}
               onClick={() => onSelect(item)}
+              style={{ animationDelay: `${index * 0.05}s` }}
               className={`
-                border-2 rounded-lg p-4 cursor-pointer transition-all duration-300
-                hover:scale-102 hover:shadow-lg
+                border-2 rounded-lg p-4 cursor-pointer transition-all duration-300 animate-fadeIn
+                hover:scale-105 hover:shadow-2xl hover:-translate-y-1
                 ${getRarityColor(item.rarity)}
               `}
             >
@@ -91,8 +92,8 @@ export const CyberwareSelector: React.FC<CyberwareSelectorProps> = ({
               </div>
 
               {/* Hover indicator */}
-              <div className="mt-4 pt-3 border-t border-gray-700/50">
-                <div className="text-xs text-gray-500 font-mono">
+              <div className="mt-4 pt-3 border-t border-gray-700/50 transition-all duration-200">
+                <div className="text-xs text-gray-500 font-mono group-hover:text-orange-400 transition-colors duration-200">
                   Click to install
                 </div>
               </div>
