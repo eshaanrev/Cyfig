@@ -12,6 +12,7 @@ function App() {
   const [slots, setSlots] = useState<SlotType[]>(cyberwareSlots);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [edgerunnerPerk, setEdgerunnerPerk] = useState<boolean>(false);
+  const [technicalAbility, setTechnicalAbility] = useState<number>(20);
 
   const handleSlotClick = (slotId: string) => {
     setSelectedSlot(slotId);
@@ -146,6 +147,41 @@ function App() {
 
       {/* Side panels */}
       <div className="absolute left-6 top-1/2 transform -translate-y-1/2 space-y-4 z-10 animate-slideIn">
+        {/* Technical Ability display */}
+        <div className="bg-gray-900/90 backdrop-blur-sm border border-cyan-400/40 rounded-lg p-4 w-48 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
+          <div className="flex items-center space-x-2 mb-3">
+            <Gauge className="w-5 h-5 text-cyan-400" />
+            <span className="text-cyan-400 font-mono text-sm">TECH ABILITY</span>
+          </div>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <button
+                onClick={() => setTechnicalAbility(Math.max(3, technicalAbility - 1))}
+                className="w-8 h-8 bg-gray-800 hover:bg-gray-700 border border-cyan-400/40 rounded text-cyan-400 font-mono transition-all duration-200 hover:scale-110"
+              >
+                -
+              </button>
+              <input
+                type="number"
+                min="3"
+                max="60"
+                value={technicalAbility}
+                onChange={(e) => setTechnicalAbility(Math.min(60, Math.max(3, parseInt(e.target.value) || 3)))}
+                className="w-16 text-center bg-gray-800 border border-cyan-400/40 rounded text-white font-mono text-lg focus:outline-none focus:border-cyan-400"
+              />
+              <button
+                onClick={() => setTechnicalAbility(Math.min(60, technicalAbility + 1))}
+                className="w-8 h-8 bg-gray-800 hover:bg-gray-700 border border-cyan-400/40 rounded text-cyan-400 font-mono transition-all duration-200 hover:scale-110"
+              >
+                +
+              </button>
+            </div>
+            <div className="text-xs text-gray-400 font-mono text-center">
+              Affects Cellular Adapter stats
+            </div>
+          </div>
+        </div>
+
         {/* Armor display */}
         <div className="bg-gray-900/90 backdrop-blur-sm border border-blue-400/40 rounded-lg p-4 w-48 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-400/20">
           <div className="flex items-center space-x-2 mb-3">
@@ -227,7 +263,7 @@ function App() {
 
       {/* Right side stats panel */}
       <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-10">
-        <StatsSidebar slots={slots} />
+        <StatsSidebar slots={slots} technicalAbility={technicalAbility} />
       </div>
 
       {/* Main configurator area */}

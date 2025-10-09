@@ -4,6 +4,7 @@ import { BarChart3, TrendingUp } from 'lucide-react';
 
 interface StatsSidebarProps {
   slots: CyberwareSlot[];
+  technicalAbility: number;
 }
 
 interface ParsedStat {
@@ -12,13 +13,42 @@ interface ParsedStat {
   unit: string;
 }
 
-export const StatsSidebar: React.FC<StatsSidebarProps> = ({ slots }) => {
+export const StatsSidebar: React.FC<StatsSidebarProps> = ({ slots, technicalAbility }) => {
   const parseStats = (): Record<string, ParsedStat> => {
     const aggregatedStats: Record<string, ParsedStat> = {};
-    
+
     slots.forEach(slot => {
       if (slot.installedCyberware) {
         slot.installedCyberware.stats.forEach(stat => {
+          // Handle Cellular Adapter dynamic stats
+          if (slot.installedCyberware?.id === 'cellular-adapter') {
+            // Check for patterns like "For each point in Technical Ability: +X% Something"
+            const techAbilityMatch = stat.match(/For each point in Technical Ability:\s*\+(\d+(?:\.\d+)?)%\s+(.+)/i);
+            if (techAbilityMatch) {
+              const valuePerPoint = parseFloat(techAbilityMatch[1]);
+              const statType = techAbilityMatch[2].trim();
+              const totalValue = valuePerPoint * technicalAbility;
+
+              // Normalize stat names
+              let normalizedStatType = statType
+                .replace(/\b(explosion resistance)\b/gi, 'Explosion Resistance')
+                .replace(/\b(tech weapon damage)\b/gi, 'Tech Weapon Damage')
+                .replace(/\b(health item recharge speed)\b/gi, 'Health Item Recharge Speed')
+                .replace(/\b(grenade recharge speed)\b/gi, 'Grenade Recharge Speed')
+                .trim();
+
+              if (aggregatedStats[normalizedStatType]) {
+                aggregatedStats[normalizedStatType].value += totalValue;
+              } else {
+                aggregatedStats[normalizedStatType] = {
+                  type: normalizedStatType,
+                  value: totalValue,
+                  unit: '%'
+                };
+              }
+              return;
+            }
+          }
           // Parse different stat formats
           const patterns = [
             // +X% format (percentages)
@@ -105,28 +135,30 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ slots }) => {
 
   const getStatColor = (statType: string, value: number) => {
     const lowerType = statType.toLowerCase();
-    
+
     // Positive stats (green when positive)
-    if (lowerType.includes('damage') || 
-        lowerType.includes('armor') || 
-        lowerType.includes('health') || 
+    if (lowerType.includes('damage') ||
+        lowerType.includes('armor') ||
+        lowerType.includes('health') ||
         lowerType.includes('crit') ||
         lowerType.includes('speed') ||
         lowerType.includes('ram') ||
         lowerType.includes('mitigation') ||
-        lowerType.includes('xp')) {
+        lowerType.includes('xp') ||
+        lowerType.includes('resistance') ||
+        lowerType.includes('recharge')) {
       return value > 0 ? 'text-green-400' : 'text-red-400';
     }
-    
+
     // Negative stats (green when negative)
-    if (lowerType.includes('recoil') || 
-        lowerType.includes('cost') || 
+    if (lowerType.includes('recoil') ||
+        lowerType.includes('cost') ||
         lowerType.includes('cooldown') ||
         lowerType.includes('spread') ||
         lowerType.includes('fall damage')) {
       return value < 0 ? 'text-green-400' : 'text-red-400';
     }
-    
+
     return 'text-blue-400';
   };
 
