@@ -4,7 +4,13 @@ import { BarChart3, TrendingUp } from 'lucide-react';
 
 interface StatsSidebarProps {
   slots: CyberwareSlot[];
-  technicalAbility: number;
+  attributes: {
+    body: number;
+    reflexes: number;
+    technicalAbility: number;
+    intelligence: number;
+    cool: number;
+  };
 }
 
 interface ParsedStat {
@@ -13,41 +19,108 @@ interface ParsedStat {
   unit: string;
 }
 
-export const StatsSidebar: React.FC<StatsSidebarProps> = ({ slots, technicalAbility }) => {
+export const StatsSidebar: React.FC<StatsSidebarProps> = ({ slots, attributes }) => {
   const parseStats = (): Record<string, ParsedStat> => {
     const aggregatedStats: Record<string, ParsedStat> = {};
 
     slots.forEach(slot => {
       if (slot.installedCyberware) {
         slot.installedCyberware.stats.forEach(stat => {
-          // Handle Cellular Adapter dynamic stats
-          if (slot.installedCyberware?.id === 'cellular-adapter') {
-            // Check for patterns like "For each point in Technical Ability: +X% Something"
-            const techAbilityMatch = stat.match(/For each point in Technical Ability:\s*\+(\d+(?:\.\d+)?)%\s+(.+)/i);
-            if (techAbilityMatch) {
-              const valuePerPoint = parseFloat(techAbilityMatch[1]);
-              const statType = techAbilityMatch[2].trim();
-              const totalValue = valuePerPoint * technicalAbility;
+          // Handle attribute-based dynamic stats
+          const attributeMatch = stat.match(/For each point in (Body|Reflexes|Technical Ability|Intelligence|Cool):\s*\+(\d+(?:\.\d+)?)(%?)\s+(.+)/i);
+          if (attributeMatch) {
+            const attributeName = attributeMatch[1].trim();
+            const valuePerPoint = parseFloat(attributeMatch[2]);
+            const isPercentage = attributeMatch[3] === '%';
+            const statType = attributeMatch[4].trim();
 
-              // Normalize stat names
-              let normalizedStatType = statType
-                .replace(/\b(explosion resistance)\b/gi, 'Explosion Resistance')
-                .replace(/\b(tech weapon damage)\b/gi, 'Tech Weapon Damage')
-                .replace(/\b(health item recharge speed)\b/gi, 'Health Item Recharge Speed')
-                .replace(/\b(grenade recharge speed)\b/gi, 'Grenade Recharge Speed')
-                .trim();
-
-              if (aggregatedStats[normalizedStatType]) {
-                aggregatedStats[normalizedStatType].value += totalValue;
-              } else {
-                aggregatedStats[normalizedStatType] = {
-                  type: normalizedStatType,
-                  value: totalValue,
-                  unit: '%'
-                };
-              }
-              return;
+            // Map attribute name to actual value
+            let attributeValue = 0;
+            switch (attributeName.toLowerCase()) {
+              case 'body':
+                attributeValue = attributes.body;
+                break;
+              case 'reflexes':
+                attributeValue = attributes.reflexes;
+                break;
+              case 'technical ability':
+                attributeValue = attributes.technicalAbility;
+                break;
+              case 'intelligence':
+                attributeValue = attributes.intelligence;
+                break;
+              case 'cool':
+                attributeValue = attributes.cool;
+                break;
             }
+
+            const totalValue = valuePerPoint * attributeValue;
+
+            // Normalize stat names
+            let normalizedStatType = statType
+              .replace(/\b(explosion resistance)\b/gi, 'Explosion Resistance')
+              .replace(/\b(tech weapon damage)\b/gi, 'Tech Weapon Damage')
+              .replace(/\b(health item recharge speed)\b/gi, 'Health Item Recharge Speed')
+              .replace(/\b(grenade recharge speed)\b/gi, 'Grenade Recharge Speed')
+              .trim();
+
+            if (aggregatedStats[normalizedStatType]) {
+              aggregatedStats[normalizedStatType].value += totalValue;
+            } else {
+              aggregatedStats[normalizedStatType] = {
+                type: normalizedStatType,
+                value: totalValue,
+                unit: isPercentage ? '%' : ''
+              };
+            }
+            return;
+          }
+
+          // Handle per-attribute cooldown reduction (e.g., "-3 sec Cooldown per Intelligence point")
+          const perAttributeMatch = stat.match(/(-?\d+(?:\.\d+)?)\s+sec\s+(.+?)\s+per\s+(Body|Reflexes|Technical Ability|Intelligence|Cool)\s+point/i);
+          if (perAttributeMatch) {
+            const valuePerPoint = parseFloat(perAttributeMatch[1]);
+            const statType = perAttributeMatch[2].trim();
+            const attributeName = perAttributeMatch[3].trim();
+
+            let attributeValue = 0;
+            switch (attributeName.toLowerCase()) {
+              case 'body':
+                attributeValue = attributes.body;
+                break;
+              case 'reflexes':
+                attributeValue = attributes.reflexes;
+                break;
+              case 'technical ability':
+                attributeValue = attributes.technicalAbility;
+                break;
+              case 'intelligence':
+                attributeValue = attributes.intelligence;
+                break;
+              case 'cool':
+                attributeValue = attributes.cool;
+                break;
+            }
+
+            const totalValue = valuePerPoint * attributeValue;
+
+            // Normalize stat names
+            let normalizedStatType = statType
+              .replace(/\b(cooldown)\b/gi, 'Cooldown')
+              .trim();
+
+            normalizedStatType += ' (from INT)';
+
+            if (aggregatedStats[normalizedStatType]) {
+              aggregatedStats[normalizedStatType].value += totalValue;
+            } else {
+              aggregatedStats[normalizedStatType] = {
+                type: normalizedStatType,
+                value: totalValue,
+                unit: ' sec'
+              };
+            }
+            return;
           }
           // Parse different stat formats
           const patterns = [

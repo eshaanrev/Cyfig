@@ -12,7 +12,20 @@ function App() {
   const [slots, setSlots] = useState<SlotType[]>(cyberwareSlots);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [edgerunnerPerk, setEdgerunnerPerk] = useState<boolean>(false);
-  const [technicalAbility, setTechnicalAbility] = useState<number>(20);
+  const [attributes, setAttributes] = useState({
+    body: 20,
+    reflexes: 20,
+    technicalAbility: 20,
+    intelligence: 20,
+    cool: 20
+  });
+
+  const updateAttribute = (attr: keyof typeof attributes, value: number) => {
+    setAttributes(prev => ({
+      ...prev,
+      [attr]: Math.min(60, Math.max(3, value))
+    }));
+  };
 
   const handleSlotClick = (slotId: string) => {
     setSelectedSlot(slotId);
@@ -147,37 +160,150 @@ function App() {
 
       {/* Side panels */}
       <div className="absolute left-6 top-1/2 transform -translate-y-1/2 space-y-4 z-10 animate-slideIn">
-        {/* Technical Ability display */}
-        <div className="bg-gray-900/90 backdrop-blur-sm border border-cyan-400/40 rounded-lg p-4 w-48 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
+        {/* Attributes panel */}
+        <div className="bg-gray-900/90 backdrop-blur-sm border border-cyan-400/40 rounded-lg p-4 w-64 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
           <div className="flex items-center space-x-2 mb-3">
             <Gauge className="w-5 h-5 text-cyan-400" />
-            <span className="text-cyan-400 font-mono text-sm">TECH ABILITY</span>
+            <span className="text-cyan-400 font-mono text-sm">ATTRIBUTES</span>
           </div>
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <button
-                onClick={() => setTechnicalAbility(Math.max(3, technicalAbility - 1))}
-                className="w-8 h-8 bg-gray-800 hover:bg-gray-700 border border-cyan-400/40 rounded text-cyan-400 font-mono transition-all duration-200 hover:scale-110"
-              >
-                -
-              </button>
-              <input
-                type="number"
-                min="3"
-                max="60"
-                value={technicalAbility}
-                onChange={(e) => setTechnicalAbility(Math.min(60, Math.max(3, parseInt(e.target.value) || 3)))}
-                className="w-16 text-center bg-gray-800 border border-cyan-400/40 rounded text-white font-mono text-lg focus:outline-none focus:border-cyan-400"
-              />
-              <button
-                onClick={() => setTechnicalAbility(Math.min(60, technicalAbility + 1))}
-                className="w-8 h-8 bg-gray-800 hover:bg-gray-700 border border-cyan-400/40 rounded text-cyan-400 font-mono transition-all duration-200 hover:scale-110"
-              >
-                +
-              </button>
+          <div className="space-y-3">
+            {/* Body */}
+            <div className="space-y-1">
+              <div className="text-xs text-red-400 font-mono">BODY</div>
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={() => updateAttribute('body', attributes.body - 1)}
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-red-400/40 rounded text-red-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  min="3"
+                  max="60"
+                  value={attributes.body}
+                  onChange={(e) => updateAttribute('body', parseInt(e.target.value) || 3)}
+                  className="w-14 text-center bg-gray-800 border border-red-400/40 rounded text-white font-mono focus:outline-none focus:border-red-400"
+                />
+                <button
+                  onClick={() => updateAttribute('body', attributes.body + 1)}
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-red-400/40 rounded text-red-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                >
+                  +
+                </button>
+              </div>
             </div>
-            <div className="text-xs text-gray-400 font-mono text-center">
-              Affects Cellular Adapter stats
+
+            {/* Reflexes */}
+            <div className="space-y-1">
+              <div className="text-xs text-green-400 font-mono">REFLEXES</div>
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={() => updateAttribute('reflexes', attributes.reflexes - 1)}
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-green-400/40 rounded text-green-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  min="3"
+                  max="60"
+                  value={attributes.reflexes}
+                  onChange={(e) => updateAttribute('reflexes', parseInt(e.target.value) || 3)}
+                  className="w-14 text-center bg-gray-800 border border-green-400/40 rounded text-white font-mono focus:outline-none focus:border-green-400"
+                />
+                <button
+                  onClick={() => updateAttribute('reflexes', attributes.reflexes + 1)}
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-green-400/40 rounded text-green-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            {/* Technical Ability */}
+            <div className="space-y-1">
+              <div className="text-xs text-yellow-400 font-mono">TECHNICAL ABILITY</div>
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={() => updateAttribute('technicalAbility', attributes.technicalAbility - 1)}
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-yellow-400/40 rounded text-yellow-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  min="3"
+                  max="60"
+                  value={attributes.technicalAbility}
+                  onChange={(e) => updateAttribute('technicalAbility', parseInt(e.target.value) || 3)}
+                  className="w-14 text-center bg-gray-800 border border-yellow-400/40 rounded text-white font-mono focus:outline-none focus:border-yellow-400"
+                />
+                <button
+                  onClick={() => updateAttribute('technicalAbility', attributes.technicalAbility + 1)}
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-yellow-400/40 rounded text-yellow-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            {/* Intelligence */}
+            <div className="space-y-1">
+              <div className="text-xs text-blue-400 font-mono">INTELLIGENCE</div>
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={() => updateAttribute('intelligence', attributes.intelligence - 1)}
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  min="3"
+                  max="60"
+                  value={attributes.intelligence}
+                  onChange={(e) => updateAttribute('intelligence', parseInt(e.target.value) || 3)}
+                  className="w-14 text-center bg-gray-800 border border-blue-400/40 rounded text-white font-mono focus:outline-none focus:border-blue-400"
+                />
+                <button
+                  onClick={() => updateAttribute('intelligence', attributes.intelligence + 1)}
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            {/* Cool */}
+            <div className="space-y-1">
+              <div className="text-xs text-purple-400 font-mono">COOL</div>
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={() => updateAttribute('cool', attributes.cool - 1)}
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-purple-400/40 rounded text-purple-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  min="3"
+                  max="60"
+                  value={attributes.cool}
+                  onChange={(e) => updateAttribute('cool', parseInt(e.target.value) || 3)}
+                  className="w-14 text-center bg-gray-800 border border-purple-400/40 rounded text-white font-mono focus:outline-none focus:border-purple-400"
+                />
+                <button
+                  onClick={() => updateAttribute('cool', attributes.cool + 1)}
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-purple-400/40 rounded text-purple-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div className="text-xs text-gray-400 font-mono text-center pt-2 border-t border-gray-700/50">
+              Range: 3-60 per attribute
             </div>
           </div>
         </div>
@@ -263,7 +389,7 @@ function App() {
 
       {/* Right side stats panel */}
       <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-10">
-        <StatsSidebar slots={slots} technicalAbility={technicalAbility} />
+        <StatsSidebar slots={slots} attributes={attributes} />
       </div>
 
       {/* Main configurator area */}
