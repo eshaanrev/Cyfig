@@ -13,17 +13,17 @@ function App() {
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [edgerunnerPerk, setEdgerunnerPerk] = useState<boolean>(false);
   const [attributes, setAttributes] = useState({
-    body: 20,
-    reflexes: 20,
-    technicalAbility: 20,
-    intelligence: 20,
-    cool: 20
+    body: 3,
+    reflexes: 3,
+    technicalAbility: 3,
+    intelligence: 3,
+    cool: 3
   });
 
   const updateAttribute = (attr: keyof typeof attributes, value: number) => {
     setAttributes(prev => ({
       ...prev,
-      [attr]: Math.min(60, Math.max(3, value))
+      [attr]: Math.min(20, Math.max(3, value))
     }));
   };
 
@@ -180,7 +180,7 @@ function App() {
                 <input
                   type="number"
                   min="3"
-                  max="60"
+                  max="20"
                   value={attributes.body}
                   onChange={(e) => updateAttribute('body', parseInt(e.target.value) || 3)}
                   className="w-14 text-center bg-gray-800 border border-red-400/40 rounded text-white font-mono focus:outline-none focus:border-red-400"
@@ -207,7 +207,7 @@ function App() {
                 <input
                   type="number"
                   min="3"
-                  max="60"
+                  max="20"
                   value={attributes.reflexes}
                   onChange={(e) => updateAttribute('reflexes', parseInt(e.target.value) || 3)}
                   className="w-14 text-center bg-gray-800 border border-green-400/40 rounded text-white font-mono focus:outline-none focus:border-green-400"
@@ -234,7 +234,7 @@ function App() {
                 <input
                   type="number"
                   min="3"
-                  max="60"
+                  max="20"
                   value={attributes.technicalAbility}
                   onChange={(e) => updateAttribute('technicalAbility', parseInt(e.target.value) || 3)}
                   className="w-14 text-center bg-gray-800 border border-yellow-400/40 rounded text-white font-mono focus:outline-none focus:border-yellow-400"
@@ -261,7 +261,7 @@ function App() {
                 <input
                   type="number"
                   min="3"
-                  max="60"
+                  max="20"
                   value={attributes.intelligence}
                   onChange={(e) => updateAttribute('intelligence', parseInt(e.target.value) || 3)}
                   className="w-14 text-center bg-gray-800 border border-blue-400/40 rounded text-white font-mono focus:outline-none focus:border-blue-400"
@@ -288,7 +288,7 @@ function App() {
                 <input
                   type="number"
                   min="3"
-                  max="60"
+                  max="20"
                   value={attributes.cool}
                   onChange={(e) => updateAttribute('cool', parseInt(e.target.value) || 3)}
                   className="w-14 text-center bg-gray-800 border border-purple-400/40 rounded text-white font-mono focus:outline-none focus:border-purple-400"
@@ -303,7 +303,7 @@ function App() {
             </div>
 
             <div className="text-xs text-gray-400 font-mono text-center pt-2 border-t border-gray-700/50">
-              Range: 3-60 per attribute
+              Range: 3-20 per attribute
             </div>
           </div>
         </div>
