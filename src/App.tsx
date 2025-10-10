@@ -6,7 +6,7 @@ import { StatsSidebar } from './components/StatsSidebar';
 import { cyberwareSlots } from './data/slots';
 import { cyberwareData } from './data/cyberware';
 import { CyberwareSlot as SlotType, Cyberware } from './types/cyberware';
-import { Cpu, Zap, Shield, User, Activity, Gauge } from 'lucide-react';
+import { Cpu, Zap, Shield, User, Activity, Gauge, ChevronDown, ChevronUp } from 'lucide-react';
 
 function App() {
   const [slots, setSlots] = useState<SlotType[]>(cyberwareSlots);
@@ -19,12 +19,24 @@ function App() {
     intelligence: 3,
     cool: 3
   });
+  const [attributesExpanded, setAttributesExpanded] = useState(true);
+  const [statsExpanded, setStatsExpanded] = useState(true);
+
+  const totalAttributePoints = Object.values(attributes).reduce((sum, val) => sum + val, 0);
+  const maxTotalPoints = 81;
 
   const updateAttribute = (attr: keyof typeof attributes, value: number) => {
-    setAttributes(prev => ({
-      ...prev,
-      [attr]: Math.min(20, Math.max(3, value))
-    }));
+    const clampedValue = Math.min(20, Math.max(3, value));
+    const currentTotal = totalAttributePoints;
+    const currentAttrValue = attributes[attr];
+    const difference = clampedValue - currentAttrValue;
+
+    if (currentTotal + difference <= maxTotalPoints) {
+      setAttributes(prev => ({
+        ...prev,
+        [attr]: clampedValue
+      }));
+    }
   };
 
   const handleSlotClick = (slotId: string) => {
@@ -161,19 +173,30 @@ function App() {
       {/* Side panels */}
       <div className="absolute left-6 top-1/2 transform -translate-y-1/2 space-y-4 z-10 animate-slideIn">
         {/* Attributes panel */}
-        <div className="bg-gray-900/90 backdrop-blur-sm border border-cyan-400/40 rounded-lg p-4 w-64 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
-          <div className="flex items-center space-x-2 mb-3">
-            <Gauge className="w-5 h-5 text-cyan-400" />
-            <span className="text-cyan-400 font-mono text-sm">ATTRIBUTES</span>
+        <div className="bg-gray-900/90 backdrop-blur-sm border border-cyan-400/40 rounded-lg p-4 w-64 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
+          <div
+            className="flex items-center justify-between mb-3 cursor-pointer"
+            onClick={() => setAttributesExpanded(!attributesExpanded)}
+          >
+            <div className="flex items-center space-x-2">
+              <Gauge className="w-5 h-5 text-cyan-400" />
+              <span className="text-cyan-400 font-mono text-sm">ATTRIBUTES</span>
+            </div>
+            {attributesExpanded ? (
+              <ChevronUp className="w-4 h-4 text-cyan-400" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-cyan-400" />
+            )}
           </div>
+          {attributesExpanded && (
           <div className="space-y-3">
             {/* Body */}
             <div className="space-y-1">
-              <div className="text-xs text-red-400 font-mono">BODY</div>
+              <div className="text-xs text-blue-400 font-mono">BODY</div>
               <div className="flex items-center justify-between">
                 <button
                   onClick={() => updateAttribute('body', attributes.body - 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-red-400/40 rounded text-red-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
                 >
                   -
                 </button>
@@ -183,11 +206,11 @@ function App() {
                   max="20"
                   value={attributes.body}
                   onChange={(e) => updateAttribute('body', parseInt(e.target.value) || 3)}
-                  className="w-14 text-center bg-gray-800 border border-red-400/40 rounded text-white font-mono focus:outline-none focus:border-red-400"
+                  className="w-14 text-center bg-gray-800 border border-blue-400/40 rounded text-white font-mono focus:outline-none focus:border-blue-400"
                 />
                 <button
                   onClick={() => updateAttribute('body', attributes.body + 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-red-400/40 rounded text-red-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
                 >
                   +
                 </button>
@@ -196,11 +219,11 @@ function App() {
 
             {/* Reflexes */}
             <div className="space-y-1">
-              <div className="text-xs text-green-400 font-mono">REFLEXES</div>
+              <div className="text-xs text-blue-400 font-mono">REFLEXES</div>
               <div className="flex items-center justify-between">
                 <button
                   onClick={() => updateAttribute('reflexes', attributes.reflexes - 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-green-400/40 rounded text-green-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
                 >
                   -
                 </button>
@@ -210,11 +233,11 @@ function App() {
                   max="20"
                   value={attributes.reflexes}
                   onChange={(e) => updateAttribute('reflexes', parseInt(e.target.value) || 3)}
-                  className="w-14 text-center bg-gray-800 border border-green-400/40 rounded text-white font-mono focus:outline-none focus:border-green-400"
+                  className="w-14 text-center bg-gray-800 border border-blue-400/40 rounded text-white font-mono focus:outline-none focus:border-blue-400"
                 />
                 <button
                   onClick={() => updateAttribute('reflexes', attributes.reflexes + 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-green-400/40 rounded text-green-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
                 >
                   +
                 </button>
@@ -223,11 +246,11 @@ function App() {
 
             {/* Technical Ability */}
             <div className="space-y-1">
-              <div className="text-xs text-yellow-400 font-mono">TECHNICAL ABILITY</div>
+              <div className="text-xs text-blue-400 font-mono">TECHNICAL ABILITY</div>
               <div className="flex items-center justify-between">
                 <button
                   onClick={() => updateAttribute('technicalAbility', attributes.technicalAbility - 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-yellow-400/40 rounded text-yellow-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
                 >
                   -
                 </button>
@@ -237,11 +260,11 @@ function App() {
                   max="20"
                   value={attributes.technicalAbility}
                   onChange={(e) => updateAttribute('technicalAbility', parseInt(e.target.value) || 3)}
-                  className="w-14 text-center bg-gray-800 border border-yellow-400/40 rounded text-white font-mono focus:outline-none focus:border-yellow-400"
+                  className="w-14 text-center bg-gray-800 border border-blue-400/40 rounded text-white font-mono focus:outline-none focus:border-blue-400"
                 />
                 <button
                   onClick={() => updateAttribute('technicalAbility', attributes.technicalAbility + 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-yellow-400/40 rounded text-yellow-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
                 >
                   +
                 </button>
@@ -277,11 +300,11 @@ function App() {
 
             {/* Cool */}
             <div className="space-y-1">
-              <div className="text-xs text-purple-400 font-mono">COOL</div>
+              <div className="text-xs text-blue-400 font-mono">COOL</div>
               <div className="flex items-center justify-between">
                 <button
                   onClick={() => updateAttribute('cool', attributes.cool - 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-purple-400/40 rounded text-purple-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
                 >
                   -
                 </button>
@@ -291,11 +314,11 @@ function App() {
                   max="20"
                   value={attributes.cool}
                   onChange={(e) => updateAttribute('cool', parseInt(e.target.value) || 3)}
-                  className="w-14 text-center bg-gray-800 border border-purple-400/40 rounded text-white font-mono focus:outline-none focus:border-purple-400"
+                  className="w-14 text-center bg-gray-800 border border-blue-400/40 rounded text-white font-mono focus:outline-none focus:border-blue-400"
                 />
                 <button
                   onClick={() => updateAttribute('cool', attributes.cool + 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-purple-400/40 rounded text-purple-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
                 >
                   +
                 </button>
@@ -303,9 +326,13 @@ function App() {
             </div>
 
             <div className="text-xs text-gray-400 font-mono text-center pt-2 border-t border-gray-700/50">
-              Range: 3-20 per attribute
+              <div>Range: 3-20 per attribute</div>
+              <div className="mt-1">
+                Total: <span className={totalAttributePoints > maxTotalPoints ? 'text-red-400' : 'text-cyan-400'}>{totalAttributePoints}</span>/{maxTotalPoints}
+              </div>
             </div>
           </div>
+          )}
         </div>
 
         {/* Armor display */}

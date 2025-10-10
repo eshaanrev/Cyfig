@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CyberwareSlot } from '../types/cyberware';
-import { BarChart3, TrendingUp } from 'lucide-react';
+import { BarChart3, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface StatsSidebarProps {
   slots: CyberwareSlot[];
@@ -20,6 +20,7 @@ interface ParsedStat {
 }
 
 export const StatsSidebar: React.FC<StatsSidebarProps> = ({ slots, attributes }) => {
+  const [isExpanded, setIsExpanded] = useState(true);
   const parseStats = (): Record<string, ParsedStat> => {
     const aggregatedStats: Record<string, ParsedStat> = {};
 
@@ -241,13 +242,23 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ slots, attributes })
   };
 
   return (
-    <div className="bg-gray-900/90 backdrop-blur-sm border border-cyan-400/40 rounded-lg p-4 w-64 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 animate-slideIn">
-      <div className="flex items-center space-x-2 mb-4">
-        <BarChart3 className="w-5 h-5 text-cyan-400 transition-transform duration-300 hover:rotate-12" />
-        <span className="text-cyan-400 font-mono text-sm">COMBINED STATS</span>
+    <div className="bg-gray-900/90 backdrop-blur-sm border border-cyan-400/40 rounded-lg p-4 w-64 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20 animate-slideIn">
+      <div
+        className="flex items-center justify-between mb-4 cursor-pointer"
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <div className="flex items-center space-x-2">
+          <BarChart3 className="w-5 h-5 text-cyan-400 transition-transform duration-300 hover:rotate-12" />
+          <span className="text-cyan-400 font-mono text-sm">COMBINED STATS</span>
+        </div>
+        {isExpanded ? (
+          <ChevronUp className="w-4 h-4 text-cyan-400" />
+        ) : (
+          <ChevronDown className="w-4 h-4 text-cyan-400" />
+        )}
       </div>
-      
-      {statEntries.length > 0 ? (
+
+      {isExpanded && statEntries.length > 0 ? (
         <div className="space-y-2 max-h-80 overflow-y-auto scrollbar-thin">
           {statEntries.map((stat, index) => (
             <div key={index} className="flex justify-between items-center text-xs transition-all duration-200 hover:scale-105 hover:bg-gray-800/50 p-1 rounded animate-fadeIn" style={{ animationDelay: `${index * 0.05}s` }}>
@@ -260,20 +271,22 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ slots, attributes })
             </div>
           ))}
         </div>
-      ) : (
+      ) : isExpanded ? (
         <div className="text-center py-8">
           <TrendingUp className="w-8 h-8 text-gray-600 mx-auto mb-2" />
           <div className="text-gray-500 text-xs font-mono">
             No cyberware installed
           </div>
         </div>
-      )}
-      
-      <div className="mt-4 pt-3 border-t border-gray-700/50">
-        <div className="text-xs text-gray-500 font-mono">
-          {statEntries.length} stat{statEntries.length !== 1 ? 's' : ''} active
+      ) : null}
+
+      {isExpanded && (
+        <div className="mt-4 pt-3 border-t border-gray-700/50">
+          <div className="text-xs text-gray-500 font-mono">
+            {statEntries.length} stat{statEntries.length !== 1 ? 's' : ''} active
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
