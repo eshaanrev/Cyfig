@@ -136,7 +136,6 @@ function App() {
             <User className="w-8 h-8 text-red-400 animate-pulse-slow" />
             <div>
               <h1 className="text-3xl font-mono text-red-400 tracking-wider">CYFIG</h1>
-              <p className="text-sm text-blue-400 font-mono">CYBERWARE CONFIGURATOR v2077</p>
             </div>
           </div>
           
@@ -162,9 +161,6 @@ function App() {
               >
                 EDGERUNNER {edgerunnerPerk ? 'ON' : 'OFF'}
               </button>
-              <div className="text-xs text-gray-400 font-mono">
-                +50 CAP
-              </div>
             </div>
           </div>
         </div>
@@ -457,9 +453,6 @@ function App() {
         <div className="flex justify-between items-center text-sm font-mono">
           <span className="text-red-400">
             {selectedSlot ? `Configuring: ${selectedSlotData?.name}` : 'Select a slot to install cyberware'}
-          </span>
-          <span className="text-blue-400">
-            Cyberpunk 2077 Accurate Data
           </span>
         </div>
       </div>
