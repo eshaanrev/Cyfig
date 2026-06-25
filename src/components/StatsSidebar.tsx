@@ -58,7 +58,7 @@ export const StatsSidebar: React.FC<StatsSidebarProps> = ({ slots, attributes })
             const totalValue = valuePerPoint * attributeValue;
 
             // Normalize stat names
-            let normalizedStatType = statType
+            const normalizedStatType = statType
               .replace(/\b(explosion resistance)\b/gi, 'Explosion Resistance')
               .replace(/\b(tech weapon damage)\b/gi, 'Tech Weapon Damage')
               .replace(/\b(health item recharge speed)\b/gi, 'Health Item Recharge Speed')

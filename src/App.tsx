@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CyberwareSlot } from './components/CyberwareSlot';
 import { CyberwareSelector } from './components/CyberwareSelector';
 import { HumanSilhouette } from './components/HumanSilhouette';
@@ -6,21 +6,62 @@ import { StatsSidebar } from './components/StatsSidebar';
 import { cyberwareSlots } from './data/slots';
 import { cyberwareData } from './data/cyberware';
 import { CyberwareSlot as SlotType, Cyberware } from './types/cyberware';
-import { Cpu, Zap, Shield, User, Activity, Gauge, ChevronDown, ChevronUp } from 'lucide-react';
+import { Cpu, Shield, User, Activity, Gauge, ChevronDown, ChevronUp, RotateCcw } from 'lucide-react';
+
+type Attributes = {
+  body: number;
+  reflexes: number;
+  technicalAbility: number;
+  intelligence: number;
+  cool: number;
+};
+
+const DEFAULT_ATTRIBUTES: Attributes = {
+  body: 3,
+  reflexes: 3,
+  technicalAbility: 3,
+  intelligence: 3,
+  cool: 3
+};
+
+const ATTRIBUTE_FIELDS: { key: keyof Attributes; label: string }[] = [
+  { key: 'body', label: 'BODY' },
+  { key: 'reflexes', label: 'REFLEXES' },
+  { key: 'technicalAbility', label: 'TECHNICAL ABILITY' },
+  { key: 'intelligence', label: 'INTELLIGENCE' },
+  { key: 'cool', label: 'COOL' }
+];
+
+const STORAGE_KEY = 'cyfig.build';
+
+function loadBuild() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw) as { slots: SlotType[]; attributes: Attributes; edgerunnerPerk: boolean };
+  } catch {
+    return null;
+  }
+}
 
 function App() {
-  const [slots, setSlots] = useState<SlotType[]>(cyberwareSlots);
+  const saved = loadBuild();
+  const [slots, setSlots] = useState<SlotType[]>(saved?.slots ?? cyberwareSlots);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
-  const [edgerunnerPerk, setEdgerunnerPerk] = useState<boolean>(false);
-  const [attributes, setAttributes] = useState({
-    body: 3,
-    reflexes: 3,
-    technicalAbility: 3,
-    intelligence: 3,
-    cool: 3
-  });
+  const [edgerunnerPerk, setEdgerunnerPerk] = useState<boolean>(saved?.edgerunnerPerk ?? false);
+  const [attributes, setAttributes] = useState<Attributes>(saved?.attributes ?? DEFAULT_ATTRIBUTES);
   const [attributesExpanded, setAttributesExpanded] = useState(true);
-  const [statsExpanded, setStatsExpanded] = useState(true);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ slots, attributes, edgerunnerPerk }));
+  }, [slots, attributes, edgerunnerPerk]);
+
+  const resetBuild = () => {
+    setSlots(cyberwareSlots);
+    setAttributes(DEFAULT_ATTRIBUTES);
+    setEdgerunnerPerk(false);
+    setSelectedSlot(null);
+  };
 
   const totalAttributePoints = Object.values(attributes).reduce((sum, val) => sum + val, 0);
   const maxTotalPoints = 81;
@@ -162,6 +203,15 @@ function App() {
                 EDGERUNNER {edgerunnerPerk ? 'ON' : 'OFF'}
               </button>
             </div>
+
+            <button
+              onClick={resetBuild}
+              aria-label="Reset build"
+              className="flex items-center space-x-2 px-3 py-1 rounded border border-gray-600 text-gray-400 font-mono text-sm transition-all duration-300 hover:scale-105 hover:border-red-400 hover:text-red-400"
+            >
+              <RotateCcw className="w-4 h-4" />
+              <span>RESET</span>
+            </button>
           </div>
         </div>
       </div>
@@ -186,140 +236,36 @@ function App() {
           </div>
           {attributesExpanded && (
           <div className="space-y-3">
-            {/* Body */}
-            <div className="space-y-1">
-              <div className="text-xs text-blue-400 font-mono">BODY</div>
-              <div className="flex items-center justify-between">
-                <button
-                  onClick={() => updateAttribute('body', attributes.body - 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  min="3"
-                  max="20"
-                  value={attributes.body}
-                  onChange={(e) => updateAttribute('body', parseInt(e.target.value) || 3)}
-                  className="w-14 text-center bg-gray-800 border border-blue-400/40 rounded text-white font-mono focus:outline-none focus:border-blue-400"
-                />
-                <button
-                  onClick={() => updateAttribute('body', attributes.body + 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
-                >
-                  +
-                </button>
+            {ATTRIBUTE_FIELDS.map(({ key, label }) => (
+              <div key={key} className="space-y-1">
+                <div className="text-xs text-blue-400 font-mono">{label}</div>
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={() => updateAttribute(key, attributes[key] - 1)}
+                    aria-label={`Decrease ${label}`}
+                    className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    min="3"
+                    max="20"
+                    value={attributes[key]}
+                    onChange={(e) => updateAttribute(key, parseInt(e.target.value) || 3)}
+                    aria-label={label}
+                    className="w-14 text-center bg-gray-800 border border-blue-400/40 rounded text-white font-mono focus:outline-none focus:border-blue-400"
+                  />
+                  <button
+                    onClick={() => updateAttribute(key, attributes[key] + 1)}
+                    aria-label={`Increase ${label}`}
+                    className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
-            </div>
-
-            {/* Reflexes */}
-            <div className="space-y-1">
-              <div className="text-xs text-blue-400 font-mono">REFLEXES</div>
-              <div className="flex items-center justify-between">
-                <button
-                  onClick={() => updateAttribute('reflexes', attributes.reflexes - 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  min="3"
-                  max="20"
-                  value={attributes.reflexes}
-                  onChange={(e) => updateAttribute('reflexes', parseInt(e.target.value) || 3)}
-                  className="w-14 text-center bg-gray-800 border border-blue-400/40 rounded text-white font-mono focus:outline-none focus:border-blue-400"
-                />
-                <button
-                  onClick={() => updateAttribute('reflexes', attributes.reflexes + 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
-            {/* Technical Ability */}
-            <div className="space-y-1">
-              <div className="text-xs text-blue-400 font-mono">TECHNICAL ABILITY</div>
-              <div className="flex items-center justify-between">
-                <button
-                  onClick={() => updateAttribute('technicalAbility', attributes.technicalAbility - 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  min="3"
-                  max="20"
-                  value={attributes.technicalAbility}
-                  onChange={(e) => updateAttribute('technicalAbility', parseInt(e.target.value) || 3)}
-                  className="w-14 text-center bg-gray-800 border border-blue-400/40 rounded text-white font-mono focus:outline-none focus:border-blue-400"
-                />
-                <button
-                  onClick={() => updateAttribute('technicalAbility', attributes.technicalAbility + 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
-            {/* Intelligence */}
-            <div className="space-y-1">
-              <div className="text-xs text-blue-400 font-mono">INTELLIGENCE</div>
-              <div className="flex items-center justify-between">
-                <button
-                  onClick={() => updateAttribute('intelligence', attributes.intelligence - 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  min="3"
-                  max="20"
-                  value={attributes.intelligence}
-                  onChange={(e) => updateAttribute('intelligence', parseInt(e.target.value) || 3)}
-                  className="w-14 text-center bg-gray-800 border border-blue-400/40 rounded text-white font-mono focus:outline-none focus:border-blue-400"
-                />
-                <button
-                  onClick={() => updateAttribute('intelligence', attributes.intelligence + 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
-            {/* Cool */}
-            <div className="space-y-1">
-              <div className="text-xs text-blue-400 font-mono">COOL</div>
-              <div className="flex items-center justify-between">
-                <button
-                  onClick={() => updateAttribute('cool', attributes.cool - 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  min="3"
-                  max="20"
-                  value={attributes.cool}
-                  onChange={(e) => updateAttribute('cool', parseInt(e.target.value) || 3)}
-                  className="w-14 text-center bg-gray-800 border border-blue-400/40 rounded text-white font-mono focus:outline-none focus:border-blue-400"
-                />
-                <button
-                  onClick={() => updateAttribute('cool', attributes.cool + 1)}
-                  className="w-7 h-7 bg-gray-800 hover:bg-gray-700 border border-blue-400/40 rounded text-blue-400 font-mono text-sm transition-all duration-200 hover:scale-110"
-                >
-                  +
-                </button>
-              </div>
-            </div>
+            ))}
 
             <div className="text-xs text-gray-400 font-mono text-center pt-2 border-t border-gray-700/50">
               <div>Range: 3-20 per attribute</div>
